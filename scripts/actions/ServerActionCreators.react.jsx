@@ -1,39 +1,57 @@
-var SmallAppDispatcher = require('../dispatcher/SmallAppDispatcher.js');
-var SmallConstants = require('../constants/SmallConstants.js');
+var SpoonfullAppDispatcher = require('../dispatcher/SpoonfullAppDispatcher.js');
+var SpoonfullConstants = require('../constants/SpoonfullConstants.js');
 
-var ActionTypes = SmallConstants.ActionTypes;
+var ActionTypes = SpoonfullConstants.ActionTypes;
 
 module.exports = {
 
-  receiveLogin: function(json, errors) {
-    SmallAppDispatcher.handleServerAction({
-      type: ActionTypes.LOGIN_RESPONSE,
-      json: json,
-      errors: errors
-    });
-  },
+    receiveLogin: function(json, errors) {
+        SpoonfullAppDispatcher.handleServerAction({
+            type: ActionTypes.LOGIN_RESPONSE,
+            json: json,
+            errors: errors
+        });
+    },
+    receiveSignup: function(json, errors) {
+        SpoonfullAppDispatcher.handleServerAction({
+            type: ActionTypes.SIGNUP_RESPONSE,
+            json: json,
+            errors: errors
+        });
+    },
 
-  receiveStories: function(json) {
-    SmallAppDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_STORIES,
-      json: json
-    });
-  },
+    receiveStories: function(json) {
+        SpoonfullAppDispatcher.handleServerAction({
+            type: ActionTypes.RECEIVE_PRODUCTS,
+            json: json
+        });
+    },
 
-  receiveStory: function(json) {
-    SmallAppDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_STORY,
-      json: json
-    });
-  },
-  
-  receiveCreatedStory: function(json, errors) {
-    SmallAppDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_CREATED_STORY,
-      json: json,
-      errors: errors
-    });
-  }
-  
+    receiveProducts: function(json) {
+        SpoonfullAppDispatcher.handleServerAction({
+            type: ActionTypes.RECEIVE_PRODUCTS,
+            json: json
+        });
+    },
+    receiveStory: function(json) {
+        SpoonfullAppDispatcher.handleServerAction({
+            type: ActionTypes.RECEIVE_PRODUCT,
+            json: json
+        });
+    },
+    receiveProduct: function(json) {
+        SpoonfullAppDispatcher.handleServerAction({
+            type: ActionTypes.RECEIVE_PRODUCT,
+            json: json
+        });
+    },
+
+    receiveCreatedStory: function(json, errors) {
+        SpoonfullAppDispatcher.handleServerAction({
+            type: ActionTypes.RECEIVE_CREATED_PRODUCT,
+            json: json,
+            errors: errors
+        });
+    }
+
 };
-

@@ -11,7 +11,8 @@
     "object-assign": "^1.0.0",
     "react": "^0.12.0",
     "superagent": "^0.21.0",
-    "timeago": "^0.2.0"
+    "timeago": "^0.2.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "browser-sync": "^1.9.0",

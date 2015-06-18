@@ -62,7 +62,9 @@ gulp.task('watchify', function() {
 });
 
 gulp.task('browserify', function() {
-  browserify(p.jsx)
+ gulp.src(p.jsx).browserify({
+  debug:true
+ })
     .transform(reactify)
     .bundle()
     .pipe(source(p.bundle))

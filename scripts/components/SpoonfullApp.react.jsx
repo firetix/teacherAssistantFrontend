@@ -4,14 +4,14 @@ var Header = require('../components/Header.react.jsx');
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var RouteStore = require('../stores/RouteStore.react.jsx');
 
+
 function getStateFromStores() {
   return {
-    isLoggedIn: SessionStore.isLoggedIn(),
-    email: SessionStore.getEmail()
+    user:SessionStore.getUser()
   };
 }
 
-var SmallApp = React.createClass({
+var SpoonfullApp = React.createClass({
 
   getInitialState: function() {
     return getStateFromStores();
@@ -33,8 +33,7 @@ var SmallApp = React.createClass({
     return (
       <div className="app">
         <Header 
-          isLoggedIn={this.state.isLoggedIn}
-          email={this.state.email} />
+          user={this.state.user} />
         <RouteHandler/>
       </div>
     );
@@ -42,5 +41,5 @@ var SmallApp = React.createClass({
 
 });
 
-module.exports = SmallApp;
+module.exports = SpoonfullApp;
 

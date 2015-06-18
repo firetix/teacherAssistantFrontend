@@ -1,10 +1,10 @@
-var SmallAppDispatcher = require('../dispatcher/SmallAppDispatcher.js');
-var SmallConstants = require('../constants/SmallConstants.js');
+var SpoonfullAppDispatcher = require('../dispatcher/SpoonfullAppDispatcher.js');
+var SpoonfullConstants = require('../constants/SpoonfullConstants.js');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 var WebAPIUtils = require('../utils/WebAPIUtils.js');
 
-var ActionTypes = SmallConstants.ActionTypes;
+var ActionTypes = SpoonfullConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
 var _stories = [];
@@ -39,7 +39,7 @@ var StoryStore = assign({}, EventEmitter.prototype, {
 
 });
 
-StoryStore.dispatchToken = SmallAppDispatcher.register(function(payload) {
+StoryStore.dispatchToken = SpoonfullAppDispatcher.register(function(payload) {
   var action = payload.action;
 
   switch(action.type) {

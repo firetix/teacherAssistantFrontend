@@ -1,0 +1,556 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'react-bootstrap' ]
+2 info using npm@2.7.5
+3 info using node@v0.12.2
+4 verbose node symlink /usr/local/bin/node
+5 silly cache add args [ 'react-bootstrap', null ]
+6 verbose cache add spec react-bootstrap
+7 silly cache add parsed spec { raw: 'react-bootstrap',
+7 silly cache add   scope: null,
+7 silly cache add   name: 'react-bootstrap',
+7 silly cache add   rawSpec: '',
+7 silly cache add   spec: '*',
+7 silly cache add   type: 'range' }
+8 verbose addNamed react-bootstrap@*
+9 silly addNamed semver.valid null
+10 silly addNamed semver.validRange *
+11 silly addNameRange { name: 'react-bootstrap', range: '*', hasData: false }
+12 silly mapToRegistry name react-bootstrap
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry uri https://registry.npmjs.org/react-bootstrap
+16 verbose addNameRange registry:https://registry.npmjs.org/react-bootstrap not in flight; fetching
+17 verbose request uri https://registry.npmjs.org/react-bootstrap
+18 verbose request no auth needed
+19 info attempt registry request try #1 at 20:01:17
+20 verbose request id c6996aa1179c27f0
+21 http request GET https://registry.npmjs.org/react-bootstrap
+22 http 200 https://registry.npmjs.org/react-bootstrap
+23 silly get cb [ 200,
+23 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+23 silly get     etag: '"8OE0YDZRTNUI6SGB8QQKT1HY6"',
+23 silly get     'content-type': 'application/json',
+23 silly get     'cache-control': 'max-age=60',
+23 silly get     'content-length': '120974',
+23 silly get     'accept-ranges': 'bytes',
+23 silly get     date: 'Thu, 18 Jun 2015 03:01:18 GMT',
+23 silly get     via: '1.1 varnish',
+23 silly get     age: '0',
+23 silly get     connection: 'keep-alive',
+23 silly get     'x-served-by': 'cache-lax1420-LAX',
+23 silly get     'x-cache': 'MISS',
+23 silly get     'x-cache-hits': '0',
+23 silly get     'x-timer': 'S1434596478.047738,VS0,VE47',
+23 silly get     vary: 'Accept' } ]
+24 verbose get saving react-bootstrap to /Users/momo/.npm/registry.npmjs.org/react-bootstrap/.cache.json
+25 silly addNameRange number 2 { name: 'react-bootstrap', range: '*', hasData: true }
+26 silly addNameRange versions [ 'react-bootstrap',
+26 silly addNameRange   [ '0.2.0',
+26 silly addNameRange     '0.3.0',
+26 silly addNameRange     '0.4.0',
+26 silly addNameRange     '0.4.2',
+26 silly addNameRange     '0.5.0',
+26 silly addNameRange     '0.5.1',
+26 silly addNameRange     '0.5.2',
+26 silly addNameRange     '0.6.2',
+26 silly addNameRange     '0.7.0',
+26 silly addNameRange     '0.6.0',
+26 silly addNameRange     '0.6.1',
+26 silly addNameRange     '0.7.1',
+26 silly addNameRange     '0.7.2',
+26 silly addNameRange     '0.8.0',
+26 silly addNameRange     '0.8.1',
+26 silly addNameRange     '0.8.2',
+26 silly addNameRange     '0.9.0',
+26 silly addNameRange     '0.10.0',
+26 silly addNameRange     '0.10.1',
+26 silly addNameRange     '0.10.2',
+26 silly addNameRange     '0.11.0',
+26 silly addNameRange     '0.11.1',
+26 silly addNameRange     '0.12.0',
+26 silly addNameRange     '0.13.0',
+26 silly addNameRange     '0.13.1',
+26 silly addNameRange     '0.13.2',
+26 silly addNameRange     '0.13.3',
+26 silly addNameRange     '0.14.0',
+26 silly addNameRange     '0.14.1',
+26 silly addNameRange     '0.15.0',
+26 silly addNameRange     '0.15.1',
+26 silly addNameRange     '0.16.0',
+26 silly addNameRange     '0.16.1',
+26 silly addNameRange     '0.17.0',
+26 silly addNameRange     '0.18.0',
+26 silly addNameRange     '0.19.0',
+26 silly addNameRange     '0.19.1',
+26 silly addNameRange     '0.20.0',
+26 silly addNameRange     '0.20.1',
+26 silly addNameRange     '0.20.2',
+26 silly addNameRange     '0.20.3',
+26 silly addNameRange     '0.21.0',
+26 silly addNameRange     '0.21.1',
+26 silly addNameRange     '0.21.2',
+26 silly addNameRange     '0.22.0',
+26 silly addNameRange     '0.22.1',
+26 silly addNameRange     '0.22.2',
+26 silly addNameRange     '0.22.3',
+26 silly addNameRange     '0.22.4',
+26 silly addNameRange     '0.22.5',
+26 silly addNameRange     '0.22.6',
+26 silly addNameRange     '0.23.0',
+26 silly addNameRange     '0.23.1',
+26 silly addNameRange     '0.24.0-alpha.0',
+26 silly addNameRange     '0.23.2',
+26 silly addNameRange     '0.24.0-alpha.1',
+26 silly addNameRange     '0.23.3',
+26 silly addNameRange     '0.24.0-alpha.2',
+26 silly addNameRange     '0.23.4',
+26 silly addNameRange     '0.24.0-alpha.3' ] ]
+27 verbose addNamed react-bootstrap@0.23.4
+28 silly addNamed semver.valid 0.23.4
+29 silly addNamed semver.validRange 0.23.4
+30 silly mapToRegistry name react-bootstrap
+31 silly mapToRegistry using default registry
+32 silly mapToRegistry registry https://registry.npmjs.org/
+33 silly mapToRegistry uri https://registry.npmjs.org/react-bootstrap
+34 verbose addRemoteTarball https://registry.npmjs.org/react-bootstrap/-/react-bootstrap-0.23.4.tgz not in flight; adding
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/react-bootstrap/-/react-bootstrap-0.23.4.tgz',
+35 verbose addRemoteTarball   '7a2ed186867799566aa80d0218085d1d9fba341a' ]
+36 info retry fetch attempt 1 at 20:01:18
+37 info attempt registry request try #1 at 20:01:18
+38 http fetch GET https://registry.npmjs.org/react-bootstrap/-/react-bootstrap-0.23.4.tgz
+39 http fetch 200 https://registry.npmjs.org/react-bootstrap/-/react-bootstrap-0.23.4.tgz
+40 silly fetchAndShaCheck shasum 7a2ed186867799566aa80d0218085d1d9fba341a
+41 verbose addTmpTarball /var/folders/74/621v6v2j02ngyg3gygnl9q2w0000gp/T/npm-14277-00c900f6/registry.npmjs.org/react-bootstrap/-/react-bootstrap-0.23.4.tgz not in flight; adding
+42 verbose addTmpTarball already have metadata; skipping unpack for react-bootstrap@0.23.4
+43 silly cache afterAdd react-bootstrap@0.23.4
+44 verbose afterAdd /Users/momo/.npm/react-bootstrap/0.23.4/package/package.json not in flight; writing
+45 verbose afterAdd /Users/momo/.npm/react-bootstrap/0.23.4/package/package.json written
+46 silly install resolved [ { name: 'react-bootstrap',
+46 silly install resolved     version: '0.23.4',
+46 silly install resolved     description: 'Bootstrap 3 components build with React',
+46 silly install resolved     repository:
+46 silly install resolved      { type: 'git',
+46 silly install resolved        url: 'git+https://github.com/react-bootstrap/react-bootstrap.git' },
+46 silly install resolved     homepage: 'http://react-bootstrap.github.io/',
+46 silly install resolved     scripts:
+46 silly install resolved      { build: 'babel-node tools/build-cli.js',
+46 silly install resolved        'test-watch': 'karma start',
+46 silly install resolved        test: 'npm run lint && npm run build && karma start --single-run && _mocha --compilers js:babel-core/register test/server/*Spec.js',
+46 silly install resolved        lint: 'eslint ./',
+46 silly install resolved        'docs-build': 'babel-node tools/build-cli.js --docs-only',
+46 silly install resolved        docs: 'babel-node docs/dev-run',
+46 silly install resolved        'docs-prod': 'npm run docs-build && NODE_ENV=production babel-node docs/server.js',
+46 silly install resolved        'docs-prod-unoptimized': 'npm run docs-build -- --dev && NODE_ENV=production babel-node docs/server.js' },
+46 silly install resolved     main: 'lib/index.js',
+46 silly install resolved     directories: { lib: 'lib/' },
+46 silly install resolved     files: [ 'LICENSE', 'README.md', 'CHANGELOG.md', 'lib', 'dist' ],
+46 silly install resolved     keywords: [ 'react', 'ecosystem-react', 'react-component', 'bootstrap' ],
+46 silly install resolved     author: { name: 'Stephen J. Collings', email: 'stevoland@gmail.com' },
+46 silly install resolved     license: 'MIT',
+46 silly install resolved     peerDependencies: { react: '>=0.13' },
+46 silly install resolved     devDependencies:
+46 silly install resolved      { babel: '^5.1.10',
+46 silly install resolved        'babel-core': '^5.1.10',
+46 silly install resolved        'babel-eslint': '^3.0.1',
+46 silly install resolved        'babel-loader': '^5.0.0',
+46 silly install resolved        bootstrap: '^3.3.4',
+46 silly install resolved        brfs: '^1.4.0',
+46 silly install resolved        chai: '^3.0.0',
+46 silly install resolved        'child-process-promise': '^1.0.1',
+46 silly install resolved        codemirror: '^5.0.0',
+46 silly install resolved        colors: '^1.0.3',
+46 silly install resolved        'css-loader': '^0.14.1',
+46 silly install resolved        'es5-shim': '^4.1.0',
+46 silly install resolved        eslint: '0.22.1',
+46 silly install resolved        'eslint-plugin-mocha': '^0.2.2',
+46 silly install resolved        'eslint-plugin-react': '^2.1.0',
+46 silly install resolved        express: '^4.12.3',
+46 silly install resolved        'extract-text-webpack-plugin': '^0.8.0',
+46 silly install resolved        'file-loader': '^0.8.1',
+46 silly install resolved        'fs-extra': '^0.19.0',
+46 silly install resolved        'fs-promise': '^0.3.1',
+46 silly install resolved        glob: '^5.0.10',
+46 silly install resolved        'http-proxy': '^1.11.1',
+46 silly install resolved        ip: '^0.3.2',
+46 silly install resolved        'json-loader': '^0.5.1',
+46 silly install resolved        karma: '~0.12.32',
+46 silly install resolved        'karma-chai': '^0.1.0',
+46 silly install resolved        'karma-chrome-launcher': '~0.1.2',
+46 silly install resolved        'karma-cli': '0.0.4',
+46 silly install resolved        'karma-firefox-launcher': '~0.1.3',
+46 silly install resolved        'karma-mocha': '~0.1.1',
+46 silly install resolved        'karma-mocha-reporter': '^1.0.2',
+46 silly install resolved        'karma-phantomjs-launcher': '^0.2.0',
+46 silly install resolved        'karma-sinon': '^1.0.3',
+46 silly install resolved        'karma-sinon-chai': '^1.0.0',
+46 silly install resolved        'karma-sourcemap-loader': '^0.3.4',
+46 silly install resolved        'karma-webpack': '^1.5.0',
+46 silly install resolved        less: '^2.4.0',
+46 silly install resolved        'less-loader': '^2.1.0',
+46 silly install resolved        lodash: '^3.5.0',
+46 silly install resolved        mocha: '^2.2.1',
+46 silly install resolved        'mt-changelog': '^0.5.2',
+46 silly install resolved        'node-libs-browser': '^0.5.2',
+46 silly install resolved        nodemon: '^1.3.7',
+46 silly install resolved        'output-file-sync': '^1.1.0',
+46 silly install resolved        phantomjs: '^1.9.17',
+46 silly install resolved        portfinder: '^0.4.0',
+46 silly install resolved        react: '^0.13.1',
+46 silly install resolved        'react-hot-loader': '^1.2.7',
+46 silly install resolved        'react-router': '^0.13.1',
+46 silly install resolved        rimraf: '^2.3.2',
+46 silly install resolved        semver: '^4.3.4',
+46 silly install resolved        sinon: '^1.10.3',
+46 silly install resolved        'sinon-chai': '^2.7.0',
+46 silly install resolved        'style-loader': '^0.12.0',
+46 silly install resolved        'transform-loader': '^0.2.1',
+46 silly install resolved        webpack: '^1.7.2',
+46 silly install resolved        'webpack-dev-server': '^1.8.2',
+46 silly install resolved        yargs: '^3.5.4' },
+46 silly install resolved     dependencies: { classnames: '^2.0.0' },
+46 silly install resolved     gitHead: 'be423ae99c42bccae74d54b45c83e52dd20948e9',
+46 silly install resolved     bugs: { url: 'https://github.com/react-bootstrap/react-bootstrap/issues' },
+46 silly install resolved     _id: 'react-bootstrap@0.23.4',
+46 silly install resolved     _shasum: '7a2ed186867799566aa80d0218085d1d9fba341a',
+46 silly install resolved     _from: 'react-bootstrap@*',
+46 silly install resolved     _npmVersion: '2.11.0',
+46 silly install resolved     _nodeVersion: '2.2.1',
+46 silly install resolved     _npmUser: { name: 'mtscout6', email: 'mtscout6@gmail.com' },
+46 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object] ],
+46 silly install resolved     dist:
+46 silly install resolved      { shasum: '7a2ed186867799566aa80d0218085d1d9fba341a',
+46 silly install resolved        tarball: 'http://registry.npmjs.org/react-bootstrap/-/react-bootstrap-0.23.4.tgz' },
+46 silly install resolved     _resolved: 'https://registry.npmjs.org/react-bootstrap/-/react-bootstrap-0.23.4.tgz' } ]
+47 info install react-bootstrap@0.23.4 into /Users/momo/Code/spoonfullWebsite/web_app
+48 info installOne react-bootstrap@0.23.4
+49 verbose installOne of react-bootstrap to /Users/momo/Code/spoonfullWebsite/web_app not in flight; installing
+50 verbose lock using /Users/momo/.npm/_locks/react-bootstrap-3866c81f2642d7fc.lock for /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap
+51 silly install write writing react-bootstrap 0.23.4 to /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap
+52 silly cache addNamed cb react-bootstrap@0.23.4
+53 verbose unbuild node_modules/react-bootstrap
+54 silly gentlyRm /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap is being purged from base /Users/momo/Code/spoonfullWebsite/web_app
+55 verbose gentlyRm don't care about contents; nuking /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap
+56 verbose tar unpack /Users/momo/.npm/react-bootstrap/0.23.4/package.tgz
+57 verbose tar unpacking to /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap
+58 silly gentlyRm /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap is being purged
+59 verbose gentlyRm don't care about contents; nuking /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap
+60 silly gunzTarPerm modes [ '755', '644' ]
+61 silly gunzTarPerm extractEntry package.json
+62 silly gunzTarPerm extractEntry README.md
+63 silly gunzTarPerm extractEntry LICENSE
+64 silly gunzTarPerm extractEntry CHANGELOG.md
+65 silly gunzTarPerm extractEntry dist/react-bootstrap.js
+66 silly gunzTarPerm extractEntry dist/react-bootstrap.min.js
+67 silly gunzTarPerm extractEntry dist/react-bootstrap.min.js.map
+68 silly gunzTarPerm extractEntry lib/Accordion.js
+69 silly gunzTarPerm extractEntry lib/Jumbotron.js
+70 silly gunzTarPerm extractEntry lib/Label.js
+71 silly gunzTarPerm extractEntry lib/ListGroup.js
+72 silly gunzTarPerm extractEntry lib/Interpolate.js
+73 silly gunzTarPerm extractEntry lib/Affix.js
+74 silly gunzTarPerm extractEntry lib/Modal.js
+75 silly gunzTarPerm extractEntry lib/ModalTrigger.js
+76 silly gunzTarPerm extractEntry lib/Nav.js
+77 silly gunzTarPerm extractEntry lib/NavItem.js
+78 silly gunzTarPerm extractEntry lib/InputBase.js
+79 silly gunzTarPerm extractEntry lib/Navbar.js
+80 silly gunzTarPerm extractEntry lib/Input.js
+81 silly gunzTarPerm extractEntry lib/OverlayMixin.js
+82 silly gunzTarPerm extractEntry lib/Grid.js
+83 silly gunzTarPerm extractEntry lib/OverlayTrigger.js
+84 silly gunzTarPerm extractEntry lib/Glyphicon.js
+85 silly gunzTarPerm extractEntry lib/PageHeader.js
+86 silly gunzTarPerm extractEntry lib/FormGroup.js
+87 silly gunzTarPerm extractEntry lib/PageItem.js
+88 silly gunzTarPerm extractEntry lib/styleMaps.js
+89 silly gunzTarPerm extractEntry lib/Pager.js
+90 silly gunzTarPerm extractEntry lib/FadeMixin.js
+91 silly gunzTarPerm extractEntry lib/Pagination.js
+92 silly gunzTarPerm extractEntry lib/DropdownStateMixin.js
+93 silly gunzTarPerm extractEntry lib/PaginationButton.js
+94 silly gunzTarPerm extractEntry lib/DropdownMenu.js
+95 silly gunzTarPerm extractEntry lib/Panel.js
+96 silly gunzTarPerm extractEntry lib/DropdownButton.js
+97 silly gunzTarPerm extractEntry lib/PanelGroup.js
+98 silly gunzTarPerm extractEntry lib/CollapsibleNav.js
+99 silly gunzTarPerm extractEntry lib/Popover.js
+100 silly gunzTarPerm extractEntry lib/CollapsibleMixin.js
+101 silly gunzTarPerm extractEntry lib/ProgressBar.js
+102 silly gunzTarPerm extractEntry lib/Col.js
+103 silly gunzTarPerm extractEntry lib/RootCloseWrapper.js
+104 silly gunzTarPerm extractEntry lib/CarouselItem.js
+105 silly gunzTarPerm extractEntry lib/Row.js
+106 silly gunzTarPerm extractEntry lib/Carousel.js
+107 silly gunzTarPerm extractEntry lib/SplitButton.js
+108 silly gunzTarPerm extractEntry lib/ButtonToolbar.js
+109 silly gunzTarPerm extractEntry lib/SubNav.js
+110 silly gunzTarPerm extractEntry lib/ButtonInput.js
+111 silly gunzTarPerm extractEntry lib/TabPane.js
+112 silly gunzTarPerm extractEntry lib/ButtonGroup.js
+113 silly gunzTarPerm extractEntry lib/TabbedArea.js
+114 silly gunzTarPerm extractEntry lib/Button.js
+115 silly gunzTarPerm extractEntry lib/Table.js
+116 silly gunzTarPerm extractEntry lib/BootstrapMixin.js
+117 silly gunzTarPerm extractEntry lib/Thumbnail.js
+118 silly gunzTarPerm extractEntry lib/Badge.js
+119 silly gunzTarPerm extractEntry lib/Tooltip.js
+120 silly gunzTarPerm extractEntry lib/Alert.js
+121 silly gunzTarPerm extractEntry lib/Well.js
+122 silly gunzTarPerm extractEntry lib/AffixMixin.js
+123 silly gunzTarPerm extractEntry lib/index.js
+124 silly gunzTarPerm extractEntry lib/ListGroupItem.js
+125 silly gunzTarPerm extractEntry lib/MenuItem.js
+126 silly gunzTarPerm extractEntry lib/factories/Accordion.js
+127 silly gunzTarPerm extractEntry lib/factories/ListGroup.js
+128 silly gunzTarPerm extractEntry lib/factories/ListGroupItem.js
+129 silly gunzTarPerm extractEntry lib/factories/MenuItem.js
+130 silly gunzTarPerm extractEntry lib/factories/Label.js
+131 silly gunzTarPerm extractEntry lib/factories/ModalTrigger.js
+132 silly gunzTarPerm extractEntry lib/factories/Nav.js
+133 silly gunzTarPerm extractEntry lib/factories/NavItem.js
+134 silly gunzTarPerm extractEntry lib/factories/Navbar.js
+135 silly gunzTarPerm extractEntry lib/factories/OverlayTrigger.js
+136 silly gunzTarPerm extractEntry lib/factories/Jumbotron.js
+137 silly gunzTarPerm extractEntry lib/factories/PageHeader.js
+138 silly gunzTarPerm extractEntry lib/factories/Interpolate.js
+139 silly gunzTarPerm extractEntry lib/factories/PageItem.js
+140 silly gunzTarPerm extractEntry lib/factories/Input.js
+141 silly gunzTarPerm extractEntry lib/factories/Pager.js
+142 silly gunzTarPerm extractEntry lib/factories/Grid.js
+143 silly gunzTarPerm extractEntry lib/factories/Pagination.js
+144 silly gunzTarPerm extractEntry lib/factories/Glyphicon.js
+145 silly gunzTarPerm extractEntry lib/factories/Panel.js
+146 silly gunzTarPerm extractEntry lib/factories/DropdownMenu.js
+147 silly gunzTarPerm extractEntry lib/factories/PanelGroup.js
+148 silly gunzTarPerm extractEntry lib/factories/DropdownButton.js
+149 silly gunzTarPerm extractEntry lib/factories/Popover.js
+150 silly gunzTarPerm extractEntry lib/factories/CollapsibleNav.js
+151 silly gunzTarPerm extractEntry lib/factories/ProgressBar.js
+152 silly gunzTarPerm extractEntry lib/factories/Col.js
+153 silly gunzTarPerm extractEntry lib/factories/Row.js
+154 silly gunzTarPerm extractEntry lib/factories/CarouselItem.js
+155 silly gunzTarPerm extractEntry lib/factories/SplitButton.js
+156 silly gunzTarPerm extractEntry lib/factories/Carousel.js
+157 silly gunzTarPerm extractEntry lib/factories/SubNav.js
+158 silly gunzTarPerm extractEntry lib/factories/ButtonToolbar.js
+159 silly gunzTarPerm extractEntry lib/factories/TabPane.js
+160 silly gunzTarPerm extractEntry lib/factories/ButtonInput.js
+161 silly gunzTarPerm extractEntry lib/factories/TabbedArea.js
+162 silly gunzTarPerm extractEntry lib/factories/ButtonGroup.js
+163 silly gunzTarPerm extractEntry lib/factories/Table.js
+164 silly gunzTarPerm extractEntry lib/factories/Button.js
+165 silly gunzTarPerm extractEntry lib/factories/Thumbnail.js
+166 silly gunzTarPerm extractEntry lib/factories/Badge.js
+167 silly gunzTarPerm extractEntry lib/factories/Tooltip.js
+168 silly gunzTarPerm extractEntry lib/factories/Alert.js
+169 silly gunzTarPerm extractEntry lib/factories/Well.js
+170 silly gunzTarPerm extractEntry lib/factories/Affix.js
+171 silly gunzTarPerm extractEntry lib/factories/index.js
+172 silly gunzTarPerm extractEntry lib/factories/Modal.js
+173 silly gunzTarPerm extractEntry lib/FormControls/Static.js
+174 silly gunzTarPerm extractEntry lib/FormControls/index.js
+175 silly gunzTarPerm extractEntry lib/utils/CustomPropTypes.js
+176 silly gunzTarPerm extractEntry lib/utils/TransitionEvents.js
+177 silly gunzTarPerm extractEntry lib/utils/ValidComponentChildren.js
+178 silly gunzTarPerm extractEntry lib/utils/childrenValueInputValidation.js
+179 silly gunzTarPerm extractEntry lib/utils/EventListener.js
+180 silly gunzTarPerm extractEntry lib/utils/createContextWrapper.js
+181 silly gunzTarPerm extractEntry lib/utils/createSelectedEvent.js
+182 silly gunzTarPerm extractEntry lib/utils/deprecationWarning.js
+183 silly gunzTarPerm extractEntry lib/utils/domUtils.js
+184 silly gunzTarPerm extractEntry lib/utils/index.js
+185 silly gunzTarPerm extractEntry lib/utils/createChainedFunction.js
+186 info preinstall react-bootstrap@0.23.4
+187 silly prepareForInstallMany adding classnames@^2.0.0 from react-bootstrap dependencies
+188 silly prepareForInstallMany adding react@>=0.13 from react-bootstrap peerDependencies
+189 warn peerDependencies The peer dependency react@>=0.13 included from react-bootstrap will no
+190 warn peerDependencies longer be automatically installed to fulfill the peerDependency
+191 warn peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+192 silly cache add args [ 'classnames@^2.0.0', null ]
+193 verbose cache add spec classnames@^2.0.0
+194 silly cache add parsed spec { raw: 'classnames@^2.0.0',
+194 silly cache add   scope: null,
+194 silly cache add   name: 'classnames',
+194 silly cache add   rawSpec: '^2.0.0',
+194 silly cache add   spec: '>=2.0.0 <3.0.0',
+194 silly cache add   type: 'range' }
+195 verbose addNamed classnames@>=2.0.0 <3.0.0
+196 silly addNamed semver.valid null
+197 silly addNamed semver.validRange >=2.0.0 <3.0.0
+198 silly addNameRange { name: 'classnames', range: '>=2.0.0 <3.0.0', hasData: false }
+199 silly mapToRegistry name classnames
+200 silly mapToRegistry using default registry
+201 silly mapToRegistry registry https://registry.npmjs.org/
+202 silly mapToRegistry uri https://registry.npmjs.org/classnames
+203 verbose addNameRange registry:https://registry.npmjs.org/classnames not in flight; fetching
+204 verbose request uri https://registry.npmjs.org/classnames
+205 verbose request no auth needed
+206 info attempt registry request try #1 at 20:01:18
+207 http request GET https://registry.npmjs.org/classnames
+208 http 200 https://registry.npmjs.org/classnames
+209 silly get cb [ 200,
+209 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+209 silly get     etag: '"46XXDUOUR7PXEJU725UEJFTTJ"',
+209 silly get     'content-type': 'application/json',
+209 silly get     'cache-control': 'max-age=60',
+209 silly get     'content-length': '18185',
+209 silly get     'accept-ranges': 'bytes',
+209 silly get     date: 'Thu, 18 Jun 2015 03:01:18 GMT',
+209 silly get     via: '1.1 varnish',
+209 silly get     age: '59',
+209 silly get     connection: 'keep-alive',
+209 silly get     'x-served-by': 'cache-lax1421-LAX',
+209 silly get     'x-cache': 'HIT',
+209 silly get     'x-cache-hits': '1',
+209 silly get     'x-timer': 'S1434596478.906318,VS0,VE0',
+209 silly get     vary: 'Accept' } ]
+210 verbose get saving classnames to /Users/momo/.npm/registry.npmjs.org/classnames/.cache.json
+211 silly addNameRange number 2 { name: 'classnames', range: '>=2.0.0 <3.0.0', hasData: true }
+212 silly addNameRange versions [ 'classnames',
+212 silly addNameRange   [ '1.0.0',
+212 silly addNameRange     '1.1.0',
+212 silly addNameRange     '1.1.1',
+212 silly addNameRange     '1.1.2',
+212 silly addNameRange     '1.1.3',
+212 silly addNameRange     '1.1.4',
+212 silly addNameRange     '1.2.0',
+212 silly addNameRange     '1.2.1',
+212 silly addNameRange     '1.2.2',
+212 silly addNameRange     '2.0.0',
+212 silly addNameRange     '2.1.0',
+212 silly addNameRange     '2.1.1',
+212 silly addNameRange     '2.1.2' ] ]
+213 verbose addNamed classnames@2.1.2
+214 silly addNamed semver.valid 2.1.2
+215 silly addNamed semver.validRange 2.1.2
+216 silly mapToRegistry name classnames
+217 silly mapToRegistry using default registry
+218 silly mapToRegistry registry https://registry.npmjs.org/
+219 silly mapToRegistry uri https://registry.npmjs.org/classnames
+220 verbose addRemoteTarball https://registry.npmjs.org/classnames/-/classnames-2.1.2.tgz not in flight; adding
+221 verbose addRemoteTarball [ 'https://registry.npmjs.org/classnames/-/classnames-2.1.2.tgz',
+221 verbose addRemoteTarball   'd32fbfcf2bb2004db03d0307255ccb8c7de75f25' ]
+222 info retry fetch attempt 1 at 20:01:18
+223 info attempt registry request try #1 at 20:01:18
+224 http fetch GET https://registry.npmjs.org/classnames/-/classnames-2.1.2.tgz
+225 http fetch 200 https://registry.npmjs.org/classnames/-/classnames-2.1.2.tgz
+226 silly fetchAndShaCheck shasum d32fbfcf2bb2004db03d0307255ccb8c7de75f25
+227 verbose addTmpTarball /var/folders/74/621v6v2j02ngyg3gygnl9q2w0000gp/T/npm-14277-00c900f6/registry.npmjs.org/classnames/-/classnames-2.1.2.tgz not in flight; adding
+228 verbose addTmpTarball already have metadata; skipping unpack for classnames@2.1.2
+229 silly cache afterAdd classnames@2.1.2
+230 verbose afterAdd /Users/momo/.npm/classnames/2.1.2/package/package.json not in flight; writing
+231 verbose afterAdd /Users/momo/.npm/classnames/2.1.2/package/package.json written
+232 silly install resolved [ { name: 'classnames',
+232 silly install resolved     version: '2.1.2',
+232 silly install resolved     description: 'A simple utility for conditionally joining classNames together',
+232 silly install resolved     main: 'index.js',
+232 silly install resolved     author: { name: 'Jed Watson' },
+232 silly install resolved     license: 'MIT',
+232 silly install resolved     repository:
+232 silly install resolved      { type: 'git',
+232 silly install resolved        url: 'https://github.com/JedWatson/classnames.git' },
+232 silly install resolved     scripts: { test: 'mocha tests.js', benchmarks: 'node ./benchmarks/run' },
+232 silly install resolved     keywords:
+232 silly install resolved      [ 'react',
+232 silly install resolved        'css',
+232 silly install resolved        'classes',
+232 silly install resolved        'classname',
+232 silly install resolved        'classnames',
+232 silly install resolved        'util',
+232 silly install resolved        'utility' ],
+232 silly install resolved     devDependencies: { benchmark: '^1.0.0', mocha: '^2.1.0' },
+232 silly install resolved     gitHead: '2348b01572896f9ed1c16098f77361e56e5660c2',
+232 silly install resolved     bugs: { url: 'https://github.com/JedWatson/classnames/issues' },
+232 silly install resolved     homepage: 'https://github.com/JedWatson/classnames',
+232 silly install resolved     _id: 'classnames@2.1.2',
+232 silly install resolved     _shasum: 'd32fbfcf2bb2004db03d0307255ccb8c7de75f25',
+232 silly install resolved     _from: 'classnames@>=2.0.0 <3.0.0',
+232 silly install resolved     _npmVersion: '2.7.5',
+232 silly install resolved     _nodeVersion: '0.12.2',
+232 silly install resolved     _npmUser: { name: 'jedwatson', email: 'jed.watson@me.com' },
+232 silly install resolved     dist:
+232 silly install resolved      { shasum: 'd32fbfcf2bb2004db03d0307255ccb8c7de75f25',
+232 silly install resolved        tarball: 'http://registry.npmjs.org/classnames/-/classnames-2.1.2.tgz' },
+232 silly install resolved     maintainers: [ [Object] ],
+232 silly install resolved     directories: {},
+232 silly install resolved     _resolved: 'https://registry.npmjs.org/classnames/-/classnames-2.1.2.tgz' } ]
+233 info install classnames@2.1.2 into /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap
+234 info installOne classnames@2.1.2
+235 verbose installOne of classnames to /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap not in flight; installing
+236 verbose lock using /Users/momo/.npm/_locks/classnames-b10b259283fdd319.lock for /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap/node_modules/classnames
+237 silly install write writing classnames 2.1.2 to /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap/node_modules/classnames
+238 silly cache addNamed cb classnames@2.1.2
+239 verbose unbuild node_modules/react-bootstrap/node_modules/classnames
+240 silly gentlyRm /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap/node_modules/classnames is being purged from base /Users/momo/Code/spoonfullWebsite/web_app
+241 verbose gentlyRm don't care about contents; nuking /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap/node_modules/classnames
+242 verbose tar unpack /Users/momo/.npm/classnames/2.1.2/package.tgz
+243 verbose tar unpacking to /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap/node_modules/classnames
+244 silly gentlyRm /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap/node_modules/classnames is being purged
+245 verbose gentlyRm don't care about contents; nuking /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap/node_modules/classnames
+246 silly gunzTarPerm modes [ '755', '644' ]
+247 silly gunzTarPerm extractEntry package.json
+248 silly gunzTarPerm extractEntry .npmignore
+249 silly gunzTarPerm extractEntry README.md
+250 silly gunzTarPerm extractEntry LICENSE
+251 silly gunzTarPerm extractEntry index.js
+252 silly gunzTarPerm extractEntry dedupe.js
+253 silly gunzTarPerm extractEntry tests.js
+254 silly gunzTarPerm extractEntry benchmarks/package.json
+255 silly gunzTarPerm extractEntry benchmarks/run.js
+256 silly gunzTarPerm extractEntry bower.json
+257 silly gunzTarPerm extractEntry HISTORY.md
+258 silly gunzTarPerm extractEntry CONTRIBUTING.md
+259 silly gunzTarPerm extractEntry .travis.yml
+260 silly gunzTarPerm extractEntry .editorconfig
+261 info preinstall classnames@2.1.2
+262 silly install resolved []
+263 verbose about to build /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap/node_modules/classnames
+264 info build /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap/node_modules/classnames
+265 verbose linkStuff [ false,
+265 verbose linkStuff   false,
+265 verbose linkStuff   false,
+265 verbose linkStuff   '/Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap/node_modules' ]
+266 info linkStuff classnames@2.1.2
+267 verbose linkBins classnames@2.1.2
+268 verbose linkMans classnames@2.1.2
+269 verbose rebuildBundles classnames@2.1.2
+270 info install classnames@2.1.2
+271 info postinstall classnames@2.1.2
+272 verbose unlock done using /Users/momo/.npm/_locks/classnames-b10b259283fdd319.lock for /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap/node_modules/classnames
+273 verbose about to build /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap
+274 info build /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap
+275 verbose linkStuff [ false,
+275 verbose linkStuff   false,
+275 verbose linkStuff   false,
+275 verbose linkStuff   '/Users/momo/Code/spoonfullWebsite/web_app/node_modules' ]
+276 info linkStuff react-bootstrap@0.23.4
+277 verbose linkBins react-bootstrap@0.23.4
+278 verbose linkMans react-bootstrap@0.23.4
+279 verbose rebuildBundles react-bootstrap@0.23.4
+280 verbose rebuildBundles [ 'classnames' ]
+281 info install react-bootstrap@0.23.4
+282 info postinstall react-bootstrap@0.23.4
+283 verbose already installed skipping react@>=0.13 /Users/momo/Code/spoonfullWebsite/web_app
+284 silly install resolved []
+285 verbose unlock done using /Users/momo/.npm/_locks/react-bootstrap-3866c81f2642d7fc.lock for /Users/momo/Code/spoonfullWebsite/web_app/node_modules/react-bootstrap
+286 verbose stack Error: The package react does not satisfy its siblings' peerDependencies requirements!
+286 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:125:32
+286 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:264:7
+286 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:138:5
+286 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+286 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+286 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+286 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+286 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+286 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+286 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+287 verbose cwd /Users/momo/Code/spoonfullWebsite/web_app
+288 error Darwin 14.3.0
+289 error argv "node" "/usr/local/bin/npm" "install" "react-bootstrap"
+290 error node v0.12.2
+291 error npm  v2.7.5
+292 error code EPEERINVALID
+293 error peerinvalid The package react does not satisfy its siblings' peerDependencies requirements!
+293 error peerinvalid Peer react-bootstrap@0.23.4 wants react@>=0.13
+293 error peerinvalid Peer react-router@0.11.6 wants react@0.12.x
+294 verbose exit [ 1, true ]

@@ -10,7 +10,7 @@ var StoryNew = React.createClass({
 
   componentDidMount: function() {
     if (!SessionStore.isLoggedIn()) { 
-      RouteActionCreators.redirect('app');
+      RouteActionCreators.redirect('login');
     }
   },
 

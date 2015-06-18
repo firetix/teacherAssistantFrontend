@@ -6,19 +6,19 @@ var ActionTypes = SpoonfullConstants.ActionTypes;
 
 module.exports = {
 
-  loadStories: function() {
+  loadProducts: function() {
     SpoonfullAppDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_STORIES
+      type: ActionTypes.LOAD_PRODUCTS
     });
-    WebAPIUtils.loadStories();
+    WebAPIUtils.loadProducts();
   },
   
-  loadStory: function(storyId) {
+  loadProduct: function(productId) {
     SpoonfullAppDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_STORY,
-      storyId: storyId
+      type: ActionTypes.LOAD_PRODUCT,
+      productId: productId
     });
-    WebAPIUtils.loadStory(storyId);
+    WebAPIUtils.loadProduct(productId);
   },
 
   createStory: function(title, body) {
@@ -27,7 +27,7 @@ module.exports = {
       title: title,
       body: body
     });
-    WebAPIUtils.createStory(title, body);
+    WebAPIUtils.createProduct(title, body);
   }
 
 };

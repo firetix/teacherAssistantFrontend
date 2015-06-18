@@ -1,12 +1,12 @@
-var SmallAppDispatcher = require('../dispatcher/SmallAppDispatcher.js');
-var SmallConstants = require('../constants/SmallConstants.js');
+var SpoonfullAppDispatcher = require('../dispatcher/SpoonfullAppDispatcher.js');
+var SpoonfullConstants = require('../constants/SpoonfullConstants.js');
 
-var ActionTypes = SmallConstants.ActionTypes;
+var ActionTypes = SpoonfullConstants.ActionTypes;
 
 module.exports = {
 
   redirect: function(route) {
-    SmallAppDispatcher.handleViewAction({
+    SpoonfullAppDispatcher.handleViewAction({
       type: ActionTypes.REDIRECT,
       route: route
     });

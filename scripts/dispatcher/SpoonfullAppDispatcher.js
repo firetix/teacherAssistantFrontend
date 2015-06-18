@@ -1,10 +1,10 @@
-var SmallConstants = require('../constants/SmallConstants.js');
+var SpoonfullConstants = require('../constants/SpoonfullConstants.js');
 var Dispatcher = require('flux').Dispatcher;
 var assign = require('object-assign');
 
-var PayloadSources = SmallConstants.PayloadSources;
+var PayloadSources = SpoonfullConstants.PayloadSources;
 
-var SmallAppDispatcher = assign(new Dispatcher(), {
+var SpoonfullAppDispatcher = assign(new Dispatcher(), {
 
   handleServerAction: function(action) {
     var payload = {
@@ -23,5 +23,5 @@ var SmallAppDispatcher = assign(new Dispatcher(), {
   }
 });
 
-module.exports = SmallAppDispatcher;
+module.exports = SpoonfullAppDispatcher;
 

@@ -6,9 +6,13 @@
     "url": "https://github.com/andreamazz/small-frontend.git"
   },
   "dependencies": {
+    "bower": "^1.4.1",
     "flux": "^2.0.0",
+    "gulp": "^3.9.0",
+    "j-toker": "0.0.6",
     "keymirror": "~0.1.0",
     "object-assign": "^1.0.0",
+    "pubsub": "^1.0.2",
     "react": "^0.12.0",
     "superagent": "^0.21.0",
     "timeago": "^0.2.0",

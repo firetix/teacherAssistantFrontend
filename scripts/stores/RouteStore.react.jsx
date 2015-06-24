@@ -62,7 +62,7 @@ RouteStore.dispatchToken = SpoonfullAppDispatcher.register(function(payload) {
             if (SessionStore.signedIn() && !(action.errors)) {
                 router.transitionTo('products');
                 // Dirty hack, need to figure this out
-                $(document).foundation();
+                // $(document).foundation();
             }
             break;
         case ActionTypes.SIGNUP_RESPONSE:

@@ -1,0 +1,50 @@
+
+/* General
+====================================== */
+
+h1 { margin-top: 0; }
+h1,h2,h3,h4,h5,h6 {
+    font-family: $heading-font;
+}
+
+a {
+    color: $link;
+    cursor: pointer;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+}
+
+hr {
+    border: 0;
+    border-bottom: 1px solid $light-gray;
+}
+
+// forms
+
+form {
+    input,
+    textarea,
+    button {
+        &:not(:last-child) {
+            margin-bottom: $small;
+        }
+    }
+}
+
+textarea {
+    display: block;
+}
+
+
+[type='text'],
+[type='password'],
+[type='email'],
+[type='url'],
+textarea {
+    transition: border 0.2s;
+    padding: $x-small;
+    border: $line solid $light-gray;
+    &:focus {
+        border: $line solid darken($light-gray, 10%);
+    }
+}

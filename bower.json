@@ -7,6 +7,11 @@
     "modernizr": "^2.8.3",
     "react-date-picker": "~0.8.0",
     "moment": "~2.10.3",
-    "j-toker": "~0.0.6"
+    "j-toker": "~0.0.6",
+    "evaporatejs": "*",
+    "blueimp-file-upload": "~9.10.2",
+    "bootstrap-filestyle": "~1.1.2",
+    "loading-bar": "*",
+    "pace": "~1.0.2"
   }
 }

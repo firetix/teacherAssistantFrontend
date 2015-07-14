@@ -1,4 +1,4 @@
-var ServerActionCreators = require('../actions/ServerActionCreators.react.jsx');
+// var ServerActionCreators = require('../actions/ServerActionCreators.react.jsx');
 var SpoonfullConstants = require('../constants/SpoonfullConstants.js');
 var request = require('superagent');
 var _ = require("underscore");
@@ -50,8 +50,10 @@ module.exports = {
         }.bind(this));
     },
 
-    loadProducts: function() {
-        request.get(APIEndpoints.PRODUCTS).end(function(error, res) {
+    loadProducts: function(params) {
+        request.get(APIEndpoints.PRODUCTS)
+        .send({ page_num:params.pageNum , per_page:params.perPage })
+        .end(function(error, res) {
             if (res) {
                 json = JSON.parse(res.text);
                 console.log(json.products);

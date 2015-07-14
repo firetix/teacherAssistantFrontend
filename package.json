@@ -7,13 +7,23 @@
   },
   "dependencies": {
     "bower": "^1.4.1",
+    "classnames": "^2.1.3",
+    "fancy-react-s3-uploader": "0.0.31",
+    "fastclick": "^1.0.6",
+    "firebase": "^2.2.7",
+    "flat-ui": "^2.1.1",
     "flux": "^2.0.0",
     "gulp": "^3.9.0",
     "j-toker": "0.0.6",
+    "js-quantities": "^1.5.0",
     "keymirror": "~0.1.0",
+    "material-ui": "^0.10.1",
+    "moment": "^2.10.3",
     "object-assign": "^1.0.0",
     "pubsub": "^1.0.2",
-    "react": "^0.12.0",
+    "react": "^0.13.3",
+    "react-tap-event-plugin": "^0.1.7",
+    "reflux": "^0.2.8",
     "superagent": "^0.21.0",
     "timeago": "^0.2.0",
     "underscore": "^1.8.3"
@@ -23,7 +33,6 @@
     "browserify": "^8.1.0",
     "del": "^1.1.0",
     "es6ify": "^1.6.0",
-    "gulp": "^3.8.10",
     "gulp-autoprefixer": "2.1.0",
     "gulp-bower": "0.0.6",
     "gulp-cache": "~0.2.4",
@@ -42,11 +51,10 @@
     "gulp-util": "~3.0.1",
     "jest": "latest",
     "main-bower-files": "^2.5.0",
-    "react": "^0.12.0",
-    "react-router": "^0.11.6",
+    "react-router": "^0.13.3",
     "reactify": "^0.17.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
-    "watchify": "^2.2.0"
+    "watchify": "^3.2.3"
   }
 }

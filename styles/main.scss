@@ -1,111 +1,29 @@
 @import 'fonts';
+@import 'slider';
 @import 'spinner';
-@import '../bower_components/foundation/scss/foundation/_functions.scss';
-@import url(http://fonts.googleapis.com/css?family=Raleway:700,400);
+@import 'flat-ui';
+@import 'variables';
+@import 'helpers';
 
-$topbar-height: rem-calc(45);
-
-*, *:before, *:after {
-  box-sizing: border-box;
-  font-family: lato;
-}
+@import 'structure';
+@import 'general';
+// views
+@import 'posts';
+@import 'button_circular';
+@import 'modal';
+// components
+@import 'spinner';
 
 body {
   background-color: #ffffff;
 }
 
-.new-story {
-  margin-top: 20px;
-}
 
-.new-story__title {
-  input {
-   border: none;
-   box-shadow: none;
-   border-bottom: 2px solid #ccc;
-  }
-}
 
-.new-story__body {
-  textarea {
-   background-color: #fafafa;
-   border: none;
-   box-shadow: none;
-  }
-}
-.new-story__submit {
-
-}
-
-.story {
-  list-style: none;
-  padding: 10px;
-  margin-top: 10px;
-  font-family: 'Raleway', sans-serif;
-}
-
-.story__title {
-  text-decoration: none;
-  font-weight: 700;
-  font-size: rem-calc(24);
-  a {
-    color: black;
-  }
-}
-
-.story__body {
-  font-weight: 400;
-  font-size: rem-calc(14);
-  color: #333;
-  font-style: italic;
-}
-
-.story__user {
-  font-weight: 400;
-  font-size: rem-calc(12);
-  color: #2E8BA9;
-}
-
-.story__date {
-  color: #aaa;
-  font-size: rem-calc(12);
-}
-
-.card {
-  margin-bottom: 1em;
-  padding: 20px;
-  background-color: #ECF0F1;
-  border-bottom: 4px solid #D4D7D8;
-  ul {
-    margin-bottom: 0;
-  }
-}
-
-.card--login {
-  margin-top: 20px;
-}
-
-.card--login__field {
-  label {
-    font-family: lato-light;
-  }
-  input {
-    border-width: 0px;
-    border-left: 4px solid #c2c2c2;
-    box-shadow: none;
-  }
-}
-
-.card--login__submit {
-  width: 100%;
-  margin: 0;
-  margin-top: 10px;
-  font-family: 'Lato'
-}
 
 .error-notice {
   position: absolute;
-  top: $topbar-height; 
+  top: 51px;
   width: 100%;
   z-index: 9999;
   background-color: #E44646;
@@ -118,3 +36,107 @@ body {
   }
 }
 
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+.hidden{
+  display: none;
+}
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size:20px;
+}
+
+.navbar{
+  background-color:#2ECC71;
+}
+.line-seperator {
+  height:1px;
+  background:#717171;
+  border-bottom: 1px solid #313030;
+}
+
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.pace .pace-activity {
+  display: block;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: #29d;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  -webkit-transform: translateX(100%) translateY(-100%) rotate(45deg);
+  transform: translateX(100%) translateY(-100%) rotate(45deg);
+  pointer-events: none;
+}
+
+.pace.pace-active .pace-activity {
+  -webkit-transform: translateX(50%) translateY(-50%) rotate(45deg);
+  transform: translateX(50%) translateY(-50%) rotate(45deg);
+}
+
+.pace .pace-activity::before,
+.pace .pace-activity::after {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    display: block;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    content: '';
+}
+
+.pace .pace-activity::before {
+    margin-left: -40px;
+    width: 80px;
+    height: 80px;
+    border-right-color: rgba(0, 0, 0, .2);
+    border-left-color: rgba(0, 0, 0, .2);
+    -webkit-animation: pace-theme-corner-indicator-spin 3s linear infinite;
+    animation: pace-theme-corner-indicator-spin 3s linear infinite;
+}
+
+.pace .pace-activity::after {
+    bottom: 50px;
+    margin-left: -20px;
+    width: 40px;
+    height: 40px;
+    border-top-color: rgba(0, 0, 0, .2);
+    border-bottom-color: rgba(0, 0, 0, .2);
+    -webkit-animation: pace-theme-corner-indicator-spin 1s linear infinite;
+    animation: pace-theme-corner-indicator-spin 1s linear infinite;
+}
+
+@-webkit-keyframes pace-theme-corner-indicator-spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(359deg); }
+}
+@keyframes pace-theme-corner-indicator-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(359deg); }
+}

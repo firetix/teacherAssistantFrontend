@@ -2,6 +2,14 @@
 var Actions = require('../../actions/Actions');
 // components
 var Link = require('react-router').Link;
+var   mui = require('material-ui'),
+  ThemeManager = new mui.Styles.ThemeManager(),
+  AppBar = mui.AppBar,
+  ListDivider = mui.ListDivider,
+  Colors = mui.Styles.Colors,
+  Avatar = mui.Avatar,
+  ListItem = mui.ListItem;
+
 
 var Product = React.createClass({
 
@@ -10,7 +18,11 @@ var Product = React.createClass({
         product: React.PropTypes.object
     },
     onProductselected:function(){
-      Actions.productSelected(this.props.product);
+        if (this.props.onClick) {
+            this.props.onClick();
+        } else {
+            Actions.productSelected(this.props.product);
+        }
     },
     render:function() {
         var user = this.props.user;
@@ -21,21 +33,17 @@ var Product = React.createClass({
         }
         return ( 
        <div className="container">
-                <div className="row">
-                    <div className="col-xs-4 col-md-4 text-center">
-                        <img id="detail-icon-img" src={source}  alt="note, paper icon" width="90" height="90"></img>
-                    </div>
-                    <div className="col-xs-8 col-md-8">
-                        <p>   <a  onClick={this.onProductselected} className="post-title" to="product" params={{ productId: product.id }}>
-                    {product.product_name + (product.product_name_2|| "")}
-                       </a></p> 
-                       <span className="hostname">
-                          made by {product.manufacturer}
-                       </span>        
-                    </div>
-
-                </div>
-                    <div className="line-seperator"></div>     
+                 <ListItem onClick={this.onProductselected}
+                              leftAvatar={<Avatar  src={source} />} 
+                              primaryText={product.product_name + (product.product_name_2|| "")}                
+                              secondaryText={
+                                <p>
+                                  <span style={{color: Colors.darkBlack}}>made by {product.manufacturer}</span><br/>
+                                  
+                                </p>
+                              }
+                              secondaryTextLines={1} />
+                            <ListDivider inset={true} />     
                 </div>
         );
     }

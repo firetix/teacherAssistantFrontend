@@ -19,6 +19,7 @@ var Register = require('./components/Signup.jsx');
 var HomePage = require('./views/home.jsx');
 var ProductsPage = require('./views/productsPage.jsx');
 var TrippsPage = require('./views/trippsPage.jsx');
+var EntriesPage = require('./views/entriesPage.jsx');
 var TrippPage = require('./views/trippPage.jsx');
 var ProductPage = require('./views/productPage.jsx');
 var AddTripp = require('./components/AddTripp.jsx');
@@ -28,13 +29,46 @@ var AddHowHigh = require('./components/AddHowHigh.jsx');
 var DemographicQuestions = require('./components/DemographicQuestions.jsx');
 var RecurrentQuestions = require('./components/RecurrentQuestions.jsx');
 var TrippStore = require('./stores/trippStore.jsx');
-var  mui = require('material-ui'),
-  ThemeManager = new mui.Styles.ThemeManager(),
-  RaisedButton = mui.RaisedButton;
+var AddProduct = require('./components/AddProduct.jsx');
+
 
 var Auth = require('j-toker');
+var NewEntrie = require('./components/NewEntrie.jsx');
 var cx = require('classnames');
+var injectTapEventPlugin = require("react-tap-event-plugin");
+var   mui = require('material-ui'),
+  ThemeManager = new mui.Styles.ThemeManager(),
+  AppBar = mui.AppBar,
+  FlatButton = mui.FlatButton,
+  Dialog = mui.Dialog;
+ var LeftNav = mui.LeftNav;
+ var IconButton = mui.IconButton;
+ var FloatingActionButton = mui.FloatingActionButton;
+  var MenuItem = mui.MenuItem;
 
+
+var menuItemsLoggedOut = [
+     { route: 'home', text: 'Home', ref:"asdasd" },
+  { route: 'login', text: 'Login' },
+  { route: 'signup', text: 'Signup' }
+];
+var menuItemsLoggedIn = [
+    { 
+     type: MenuItem.Types.LINK, 
+     payload: '/#/products', 
+     text: 'Profile' 
+  },
+    { 
+     type: MenuItem.Types.LINK, 
+     payload: '/#/tripps', 
+     text: 'Register' 
+  },
+];
+menuItems2 = [
+  { route: 'home', text: 'Home' },
+  { route: 'login', text: 'Login' },
+  { route: 'signup', text: 'Signup' }
+];
 function keyUpHandler(e) {
     // esc key closes modal
     if (e.keyCode === 27) {
@@ -54,11 +88,20 @@ var SpoonfullApp = React.createClass({
         Reflux.listenTo(Actions.transitionTripps, 'transitionTripps'),
         Reflux.listenTo(Actions.submitTripp.completed, 'onSuccess')
     ],
+    childContextTypes: {
+      muiTheme: React.PropTypes.object
+    },
+
+    getChildContext:function() {
+      return {
+        muiTheme: ThemeManager.getCurrentTheme()
+      };
+    },
     getInitialState: function() {
         var initState = {
             
             showModal: false,
-            modalType: 'login'
+            modalType: ''
         };
         initState.user =SessionStore.getUser().user
         return initState;
@@ -83,6 +126,7 @@ var SpoonfullApp = React.createClass({
         this.setState({
             showModal: false
         });
+        this.refs.dialog.dismiss();
     },
 
     addTrip:function(){
@@ -111,6 +155,7 @@ var SpoonfullApp = React.createClass({
             showModal: true,
             params:params
         });
+         this.refs.dialog.show();
     },
     componentDidMount: function () {
         $('.navbar-nav').on('click', function(){ 
@@ -119,17 +164,26 @@ var SpoonfullApp = React.createClass({
             }
         });  
     },
+    onLeftPanelChange:function(ev,numb,data){
+    	this.transitionTo(data.route);
+		this.refs.leftNav.close();
+    },
     render : function () {
         var user = this.state.user;
         var menu;
         var addNote;
         var rootUrl = "#";
+        var menuItems;
         var wrapperCx = cx('wrapper', 'full-height', {
             'modal-open': this.state.showModal
-        });sp
-
+        });
+		var actions = [
+		   { text: "Can't find it?", ref: 'add_product',onTouchTap: this.showAddProduct },
+		  { text: 'Cancel' }
+		];
         var modalTypes = {
             'login'   : <Login/>,
+            'addProduct'   : <AddProduct {...this.state}{ ...this.props } tripp={this.state.params}/>,
             'selectProduct'   : <ProductsPage/>,
             'register': 
             <Register/>,
@@ -140,62 +194,91 @@ var SpoonfullApp = React.createClass({
             'demographicQuestions':  <DemographicQuestions {...this.state}{ ...this.props } tripp={this.state.params}/>,
             'recurrentQuestions':  <RecurrentQuestions {...this.state}{ ...this.props } tripp={this.state.params}/>
         };
+        if(this.state.modalType == 'addProduct'){
+        	 actions=  [
+			   { text: "Submit", ref: 'add_product',onTouchTap: this.addProduct  }
+			];
+        }
         var modalType = modalTypes[this.state.modalType];   
         if (this.state.user && this.state.user.signedIn) {
             rootUrl = "#tripps/1";
+            menuItems = menuItemsLoggedIn;
+
             menu = (
-                <ul className="nav navbar-nav">
-                    <li >
-                        <a onClick={Actions.logout}>Logout</a>
-                    </li>
-                    <li>
-                    <a className="newpost-toggle" onClick={ Actions.showModal.bind(this, 'addTripp') }>
-                        <i className="fa fa-plus-square-o"></i>
-                        <span className="sr-only">New Post</span>
-                    </a>
-                    </li>
-                </ul>
+                      <mui.AppBar
+         title='Spoonfull'
+         onRightIconButtonTouchTap={this.onRightIconButtonClick}
+          onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTapLoggedin}
+         iconClassNameRight="fa fa-pencil-square-o" iconClassNameLeft="fa fa-user"  className="app_bar"/>
             )
         } else {
+            menuItems = menuItemsLoggedOut;
             menu = (
-                <ul className="nav navbar-nav">
-                    <li >
-                        <a onClick={ Actions.showModal.bind(this, 'login') } >Login</a>
-                        
-                    </li>
-                    <li >
-                        <a onClick={ Actions.showModal.bind(this, 'register') }>Register</a>
-                      </li>
-                </ul>
+                <div>
+                <LeftNav ref="leftNav" docked={false} menuItems={menuItemsLoggedOut} onChange={this.onLeftPanelChange} />
+                <mui.AppBar
+                  title='Spoonfull'
+                   onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTap} className="app_bar" />
+                  </div>
             )
         }
+        // return (
+        //     <div className={ wrapperCx }>
 
-        return (
-            <div className={ wrapperCx }>
-                <div>
-                    <nav className="navbar navbar-default" role="navigation">
-                        <div className="navbar-header">
-                            <button className="navbar-toggle" data-target="#navbar-collapse-01" data-toggle="collapse" type="button">
-                                <span className="sr-only">Toggle navigation</span>
-                            </button>
-                            <a className="navbar-brand" href={rootUrl}>Spoonfull</a>
-                        </div>
-                        <div className="collapse navbar-collapse navbar-right" id="navbar-collapse-01">
-                            { menu}
-                        </div>
-                    </nav>
-                </div>
-                <div className="container" id="main_content">
-                    <RouteHandler { ...this.props } user={ this.state.user }/>
-                </div>
-                <aside className="md-modal">
-                    { modalType }
-                </aside>
-                <a className="md-mask" href="#" onClick={ this.hideModal }></a>
-            </div>
-        );
-    }
+        //     <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+        //         <div>
+        //         <AppBar
+        //           title="Spoonfull" onLeftIconButtonTouchTap={this.onclick} onRightIconButtonTouchTap={this.onclick} onclick={this.onclick}/>
+
+        //         </div>
+        //         <div className="container" id="main_content">
+        //             <RouteHandler { ...this.props } user={ this.state.user }/>
+        //         </div>
+        //         <aside className="md-modal">
+        //             { modalType }
+        //         </aside>
+        //         <a className="md-mask" href="#" onClick={ this.hideModal }></a>
+        //     </div>
+        // );
+		return (
+		     <div>
+		    {menu}
+		         <div className="container" id="main_content">
+		             <RouteHandler { ...this.props } user={ this.state.user }/>
+		         </div>
+		         <Dialog openImmediately={this.state.showModal} contentStyle={{width:'100%',height:'3000px'}}   ref="dialog"
+		            autoDetectWindowHeight={false} autoScrollBodyContent={true} actions={actions}>
+		              { modalType } 
+		         </Dialog>
+		     </div>
+		   );
+    },
+    _handleCustomDialogSubmit:function(){
+        this.refs.dialog.show();
+    },
+    componentWillMount: function () {
+		injectTapEventPlugin();
+          
+    },
+    showAddProduct:function(){
+    	Actions.showModal('addProduct')
+    },
+	addProduct:function(){
+
+	},
+    componentWillUpdate: function (nextProps, nextState) {
+         injectTapEventPlugin(); 
+    },
+  onRightIconButtonClick: function(){
+    this.transitionTo('new_entrie')
+  },
+  onLeftIconButtonTouchTap:function(){
+  	this.refs.leftNav.toggle();
+  }
 });
+
+
+
 
 // var SpoonfullApp = require('./components/SpoonfullApp.react.jsx');
 // var LoginPage = require('./components/session/LoginPage.react.jsx');
@@ -247,8 +330,12 @@ var routes = (
         <Route handler={ UhOh } name="404" path="/404"/>
         <Route name="products" path="/products/:pageNum" handler={ ProductsPage } ignoreScrollBehavior />    
         <Route name="product" path="/product/:productId" handler={ProductPage }/>  
+        <Route name="login" path="/login" handler={Login }/>  
+        <Route name="signup" path="/signup" handler={Register }/>  
+        <Route name="new_entrie" path="/entrie" handler={NewEntrie }/>  
         <Route name="tripps" path="/tripps/:pageNum" handler={ TrippsPage } ignoreScrollBehavior/>
         <Route name="tripp" path="/tripp/:trippId" handler={ TrippPage } ignoreScrollBehavior/>
+        <Route name="entries" path="/entries/:pageNum" handler={ EntriesPage } ignoreScrollBehavior/>
         <NotFoundRoute handler={UhOh} />
         <DefaultRoute handler={ HomePage } name="home"/>    
     </Route>
@@ -259,4 +346,5 @@ Router.run(routes, function (Handler, state) {
 });
 
 // fastclick eliminates 300ms click delay on mobile
-attachFastClick(document.body);
+injectTapEventPlugin();
+// attachFastClick(document.body);

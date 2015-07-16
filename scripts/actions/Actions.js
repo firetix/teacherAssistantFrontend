@@ -6,6 +6,7 @@ var request = require('superagent');
 var Firebase = require('firebase');
 var ref = new Firebase('https://luminous-fire-7725.firebaseio.com/');
 var trippsRef = ref.child('tripps');
+var entriesRef = ref.child('entries');
 var mediasRef = ref.child('medias');
 var Router = require('react-router');
 var Navigation = Router.Navigation;
@@ -52,7 +53,9 @@ var Actions = Reflux.createActions({
     // firebase actions
     'listenToTripp': {},
     'listenToTripps': {},
+    'listenToEntries': {},
     'stopListeningToTripps': {},
+    'stopListeningToEntries': {},
     'stopListeningToTripp': {},
       // ui actions
     'showModal': {},
@@ -61,7 +64,14 @@ var Actions = Reflux.createActions({
       'transitionHome':{},
       'transitionTripps':{},
       'validated':{},
-      'addTrippProduct':{}
+      'addTrippProduct':{},
+
+      'upvoteEntrie': {},
+      'downvoteEntrie': {},
+      'submitEntrie':  {children: ["completed","failed"]},
+      'updateEntrie': {},
+      'updateEntrieCompleted':{},
+      'deleteEntrie': {},
 
 
 });
@@ -288,6 +298,48 @@ Actions.downvoteTripp.preEmit = function(userId, trippId) {
         }
     });
 };
+
+
+///////////////////////////////////
+// Entrie Actions//
+////////////////////////////
+Actions.submitEntrie.listen(function(entrie) {
+    var newEntrieRef = entriesRef.push(entrie, function(error) {
+        if (error) {
+            this.failed(error.code);
+        } else {
+            this.completed(newEntrieRef.key());
+        }
+    }.bind(this));
+});
+
+Actions.deleteEntrie.preEmit = function(entrieId) {
+    entriesRef.child(entrieId).remove();
+};
+
+Actions.upvoteEntrie.preEmit = function(userId, entrieId) {
+    entriesRef.child(entrieId).child('upvotes').transaction(function(curr) {
+        return (curr || 0) + 1;
+    }, function(error, success) {
+        if (success) {
+            // register upvote in user's profile
+            // usersRef.child(userId).child('upvoted').child(entrieId).set(true);
+        }
+    });
+};
+
+Actions.downvoteEntrie.preEmit = function(userId, entrieId) {
+    entriesRef.child(trippId).child('upvotes').transaction(function(curr) {
+        return curr - 1;
+    }, function(error, success) {
+        if (success) {
+            // register upvote in user's profile
+            // usersRef.child(userId).child('upvoted').child(trippId).remove();
+        }
+    });
+};
+
+
 
 /* Media Actions
 ===============================*/

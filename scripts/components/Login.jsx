@@ -1,17 +1,24 @@
 
 var Reflux = require('Reflux');
+var React = require('react');
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var ErrorNotice = require('../components/common/ErrorNotice.react.jsx');
 var Actions = require('../actions/Actions');
 var Router = require('react-router');
+var injectTapEventPlugin = require("react-tap-event-plugin");
+var   mui = require('material-ui'),
+  ThemeManager = new mui.Styles.ThemeManager(),
+  RaisedButton= mui.RaisedButton,
+  TextField = mui.TextField;
 
 var LoginPage = React.createClass({
   mixins: [
         Router.Navigation,
+        React.addons.LinkedStateMixin,
       Reflux.listenTo(SessionStore, 'userUpdate')
   ],
   getInitialState: function() {
-    return { errors: [] };
+    return { errors: [],email:'',password:'' };
   },
   onSubmit:function(e){
     e.preventDefault();
@@ -22,14 +29,14 @@ var LoginPage = React.createClass({
     });
 
     Actions.login({
-        email: React.findDOMNode(this.refs.email).value.trim(),
-        password: React.findDOMNode(this.refs.password).value.trim()
+        email: this.state.email.trim(),
+        password: this.state.password.trim()
     });
   },
   userUpdate:function(triggerName,errors,user){
     switch (triggerName) {
       case 'loginSuccess':
-     this.transitionTo('tripps',{
+     this.transitionTo('entries',{
        pageNum:1
      });
         break;
@@ -50,17 +57,25 @@ var LoginPage = React.createClass({
       </div>):(<div></div>)
     return (
       <div>
+            <br/>
+      <br/>
         {errors}
       <form role="form" onSubmit={this.onSubmit }>
         <div className="form-group">
-          <label className="control-label" htmlFor="exampleInputEmail1">Email address</label>
-          <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter email"  ref="email" />
+         <TextField
+         valueLink={this.linkState("email")}
+           floatingLabelText="Email" type="email">
+         </TextField>
         </div>
         <div className="form-group">
-          <label className="control-label" htmlFor="exampleInputPassword1">Password</label>
-          <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" ref="password"/>
+         <TextField
+         valueLink={this.linkState("password")}
+           floatingLabelText="Password" type="password">
+         </TextField>
         </div>
-        <button type="submit" className="btn btn-primary" ref="submit">Submit</button>
+        <div className="text-right">
+        <RaisedButton label="Submit" secondary={true} ref="submit" onClick={this.onSubmit}/>
+        </div>
       </form>
     </div>
     );

@@ -3,14 +3,19 @@ var SessionStore = require('../stores/SessionStore.react.jsx');
 var ErrorNotice = require('../components/common/ErrorNotice.react.jsx');
 var Actions = require('../actions/Actions');
 var Router = require('react-router');
+var   mui = require('material-ui'),
+  ThemeManager = new mui.Styles.ThemeManager(),
+  RaisedButton= mui.RaisedButton,
+  TextField = mui.TextField;
 
 var LoginPage = React.createClass({
   mixins: [
         Router.Navigation,
+        React.addons.LinkedStateMixin,
       Reflux.listenTo(SessionStore, 'userUpdate')
   ],
   getInitialState: function() {
-    return { errors: [] };
+    return { errors: [],email:'',password:'',full_name:'',password_confirmation:'' };
   },
   onSubmit:function(e){
     e.preventDefault();
@@ -19,12 +24,17 @@ var LoginPage = React.createClass({
     this.setState({
         submitted: true
     });
-
+    if(this.state.invite_code != "puppy"){
+      this.setState({
+        errors:['Invite code incorrect']
+      })
+      return
+    }
         Actions.register({
-            email: React.findDOMNode(this.refs.email).value.trim(),
-            full_name: React.findDOMNode(this.refs.full_name).value.trim(),
-            password: React.findDOMNode(this.refs.password).value.trim(),
-            password_confirmation: React.findDOMNode(this.refs.password_confirmation).value.trim()
+            email: this.state.email.trim(),
+            full_name: this.state.full_name.trim(),
+            password: this.state.password.trim(),
+            password_confirmation: this.state.password_confirmation.trim()
         });
   },
   userUpdate:function(triggerName,errors,user){
@@ -51,26 +61,44 @@ var LoginPage = React.createClass({
       </div>):(<div></div>)
     return (
       <div>
+            <br/>
+      <br/>
         {errors}
       <form role="form" onSubmit={this.onSubmit }>
         <div className="form-group">
-          <label className="control-label" htmlFor="InputEmail1">Email address</label>
-          <input type="email" className="form-control" id="InputEmail1" placeholder="Enter email"  ref="email" />
+          <TextField
+          valueLink={this.linkState("email")}
+            floatingLabelText="Email">
+          </TextField>
         </div>
         <div className="form-group">
-          <label className="control-label" htmlFor="InputFullName">Full Name</label>
-          <input className="form-control" id="InputFullName" placeholder="Enter full name"  ref="full_name" />
+          <TextField
+          valueLink={this.linkState("full_name")}
+            floatingLabelText="Full Name">
+          </TextField>
         </div>
         
         <div className="form-group">
-          <label className="control-label" htmlFor="InputPassword">Password</label>
-          <input type="password" className="form-control" id="InputPassword" placeholder="Password" ref="password"/>
+          <TextField
+          valueLink={this.linkState("password")}
+            floatingLabelText="Password">
+          </TextField>
         </div>
         <div className="form-group">
-          <label className="control-label" htmlFor="InputPasswordConfirmation">Password</label>
-          <input type="password" className="form-control" id="InputPasswordConfirmation" placeholder="Password confirmation" ref="password_confirmation"/>
+          <TextField
+          valueLink={this.linkState("password_confirmation")}
+            floatingLabelText="Password confirmation">
+          </TextField>
         </div>
-        <button type="submit" className="btn btn-primary" ref="submit">Submit</button>
+        <div className="form-group">
+          <TextField
+          valueLink={this.linkState("invite_code")}
+            floatingLabelText="Invite code">
+          </TextField>
+        </div>
+        <div className="text-right">
+        <RaisedButton label="Submit" secondary={true} ref="submit" onClick={this.onSubmit}/>
+        </div>
       </form>
     </div>
     );

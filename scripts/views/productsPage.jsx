@@ -8,6 +8,15 @@ var Product = require('../components/products/productItem.jsx');
 var LoginRedirection = require('../components/mixins/LoginRedirection.jsx');
 var Router = require('react-router');
 var Link = Router.Link;
+var   mui = require('material-ui'),
+  ThemeManager = new mui.Styles.ThemeManager(),
+  AppBar = mui.AppBar,
+  ListDivider = mui.ListDivider,
+  Colors = mui.Styles.Colors,
+  Avatar = mui.Avatar,
+  List = mui.List,
+  TextField = mui.TextField;
+
 
 var Products = React.createClass({
 
@@ -30,11 +39,19 @@ var Products = React.createClass({
     },
     statics: {
         willTransitionTo:function(transition, params) {
+            
             Actions.getProducts({	
                 currentPage: (+params.pageNum || 1),
                 perPage: this.perPage,
             });
         }
+    },
+    componentDidMount: function () {
+        React.findDOMNode(this.refs.search_term).focus()
+          Actions.getProducts({ 
+              currentPage:  1,
+              perPage: 25
+          });
     },
     onStoreUpdate: function(productsData) {
         this.setState({
@@ -75,19 +92,23 @@ var Products = React.createClass({
         //                         Next
         //                     </Link></div>)
         // }
-        console.log(products)
         products = products.map(function(product) {
               return <Product product={ product } user={ user } key={ product.id } />;
           });
-        return ( < div className = "content full-width" >
+        return ( < div className = "" >
             <div className="input-group input-group-hg input-group-rounded">
               <span className="input-group-btn">
                 <button type="submit" className="btn"><i className="fa fa-search"></i></button>
               </span>
-              <input type="text" ref="search_term" onChange={this.searchTerm} className="form-control" placeholder="Search" id="search-query-2"></input>
+              <input type="text" onChange={this.searchTerm} ref="search_term"  className="form-control input-group-rounded input-group input-group-hg" placeholder="Search" id="search-query-2"></input>
             </div>
+
+            <br/>
+            <br/>
             < div className = "products" >
+            <List>
              { this.state.loading ? <Spinner /> : products }
+             </List>
             < /div>
             {page}
             </div >

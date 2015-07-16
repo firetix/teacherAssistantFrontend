@@ -19,7 +19,9 @@ body {
 }
 
 
-
+.login_wrapper{
+  width:350px;
+}
 
 .error-notice {
   position: absolute;
@@ -49,6 +51,9 @@ body {
 }
 .hidden{
   display: none;
+}
+.products{
+  height:960px;
 }
 
 label {
@@ -140,3 +145,12 @@ label {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(359deg); }
 }
+
+.app_bar{
+  position:fixed;
+}
+
+#main_content{
+  padding-top: 63px;
+}
+

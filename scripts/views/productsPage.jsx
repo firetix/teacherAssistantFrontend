@@ -1,8 +1,11 @@
 var Reflux = require('reflux');
+var React = require('react');
 var Actions = require('../actions/Actions');
 
 var ProductsStore = require('../stores/ProductsStore.react.jsx');
 
+
+var InfiniteScroll = require('react-infinite-scroll')(React);
 var Spinner = require('../components/common/spinner.jsx');
 var Product = require('../components/products/productItem.jsx');
 var LoginRedirection = require('../components/mixins/LoginRedirection.jsx');
@@ -15,6 +18,7 @@ var   mui = require('material-ui'),
   Colors = mui.Styles.Colors,
   Avatar = mui.Avatar,
   List = mui.List,
+  Paper = mui.Paper,
   TextField = mui.TextField;
 
 
@@ -24,34 +28,19 @@ var Products = React.createClass({
         Router.Navigation,
         Router.State,
         Reflux.listenTo(ProductsStore, 'onStoreUpdate'),
-        LoginRedirection
+        LoginRedirection,
+        React.addons.LinkedStateMixin
     ],
     getInitialState: function() {
         var productsData = ProductsStore.getDefaultData();
         return {
-            loading: true,
+            loading: false,
             products: productsData.products,
             sortOptions: productsData.sortOptions,
             nextPage: productsData.nextPage,
             currentPage: productsData.currentPage,
             perPage: productsData.perPage
         };
-    },
-    statics: {
-        willTransitionTo:function(transition, params) {
-            
-            Actions.getProducts({	
-                currentPage: (+params.pageNum || 1),
-                perPage: this.perPage,
-            });
-        }
-    },
-    componentDidMount: function () {
-        React.findDOMNode(this.refs.search_term).focus()
-          Actions.getProducts({ 
-              currentPage:  1,
-              perPage: 25
-          });
     },
     onStoreUpdate: function(productsData) {
         this.setState({
@@ -62,14 +51,27 @@ var Products = React.createClass({
             currentPage: productsData.currentPage,
             perPage:productsData.perPage
         });
-
     },
     searchTerm:function(){
         Actions.getProducts({   
             currentPage: 1,
-            perPage: this.perPage,
-            searchTerm:React.findDOMNode(this.refs.search_term).value.trim()
+            perPage: this.state.perPage,
+            searchTerm:this.refs.search.getValue().trim()
         });
+    },
+    loadFunc:function(){
+      if(this.state.loading){
+        return;
+      }
+
+      this.setState({
+        loading:true
+      });
+      Actions.getProducts({ 
+          currentPage: (this.state.currentPage +1 ),
+          perPage: this.state.perPage,
+          searchTerm:this.refs.search.getValue().trim()
+      });
     },
     render: function() {
         var products = this.state.products;
@@ -80,38 +82,24 @@ var Products = React.createClass({
         if(pageNum == 9 || (products.length ==0 && !this.state.loading)){
             page = ( <p> No Products Found </p>)
         }
-        // else if(pageNum >1 ){
-        //     page = (   <div className="pagination pagination-success"><Link to="products" params={{ pageNum: pageNum*1 - 1 }} className="btn btn-success previous">
-        //                         Previous
-        //                     </Link>
-        //                     <Link to="products" params={{ pageNum: pageNum*1 + 1 }} className="btn btn-success next">
-        //                         Next
-        //                     </Link></div>)
-        // }else{
-        //     page = ( <div className="pagination pagination-success"> <Link to="products" params={{ pageNum: pageNum*1 + 1 }} className="btn btn-success next">
-        //                         Next
-        //                     </Link></div>)
-        // }
         products = products.map(function(product) {
-              return <Product product={ product } user={ user } key={ product.id } />;
+              return <Product product={ product } user={ user } key={ product.id } triggerSelection={true}/>;
           });
-        return ( < div className = "" >
-            <div className="input-group input-group-hg input-group-rounded">
-              <span className="input-group-btn">
-                <button type="submit" className="btn"><i className="fa fa-search"></i></button>
-              </span>
-              <input type="text" onChange={this.searchTerm} ref="search_term"  className="form-control input-group-rounded input-group input-group-hg" placeholder="Search" id="search-query-2"></input>
-            </div>
-
-            <br/>
-            <br/>
-            < div className = "products" >
-            <List>
-             { this.state.loading ? <Spinner /> : products }
-             </List>
-            < /div>
-            {page}
-            </div >
+        var productsJsx = (<InfiniteScroll
+            pageStart={this.state.currentPage}
+            loadMore={this.loadFunc}
+            hasMore={this.state.nextPage}
+            threshold={5}
+            loader={<Spinner />}>
+          {products} 
+        </InfiniteScroll>);
+        return ( 
+          <Paper zDepth={2} className="text-center">
+            <TextField
+              floatingLabelText="Search" hintText="Product name or Brand or flavor" onChange={this.searchTerm} ref="search" type="search"/> 
+             { productsJsx }
+          </Paper>
+          
         );
     }
 

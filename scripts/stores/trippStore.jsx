@@ -1,8 +1,8 @@
 var Reflux = require('reflux');
 var Actions = require('../actions/Actions');
-
+var SpoonfullConstants = require('../constants/SpoonfullConstants.js');
 var Firebase = require('firebase');
-var ref = new Firebase('https://luminous-fire-7725.firebaseio.com/');
+var ref = new Firebase(SpoonfullConstants.FirebaseRoot);
 var trippsRef = ref.child('tripps');
 var mediasRef = ref.child('medias');
 var _ = require('underscore');

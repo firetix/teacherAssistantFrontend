@@ -5,19 +5,16 @@ var Actions = require('../actions/Actions');
 var Link = require('react-router').Link;
 
 var AddNote = React.createClass({
-
-    addNote:function(e){
-        e.preventDefault();
-
-        if (!this.props.user.signedIn) {
-            Actions.showModal('login');
-            return;
-        }
+    mixins: [
+        Reflux.listenTo(Actions.addNoteUI, 'addNoteUI')
+    ],
+    addNoteUI:function(e){
+        // e.preventDefault();
+        var entrie = this.props.entrie;
         var mediaTextEl = this.refs.mediaTextEl.getDOMNode();
 
         var media = {
-            trippId: this.props.params.trippId,
-            trippTitle: this.props.tripp.title,
+            entrieId: entrie.id,
             text: mediaTextEl.value.trim(),
             type:"note",
             creator: this.props.user.full_name,
@@ -30,9 +27,8 @@ var AddNote = React.createClass({
     },
     render:function() {
         return (
-                 <form className='comment-form' onSubmit={ this.addNote }>
+                 <form className='comment-form' >
                     <textarea placeholder="Add a note" ref="mediaTextEl" className="comment-input full-width"></textarea>
-                    <button type="submit" className="button button-primary">Submit</button>
                 </form>
         );
     }

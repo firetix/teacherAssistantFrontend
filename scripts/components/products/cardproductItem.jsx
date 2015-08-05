@@ -8,10 +8,13 @@ var   mui = require('material-ui'),
   ListDivider = mui.ListDivider,
   Colors = mui.Styles.Colors,
   Avatar = mui.Avatar,
+  Card = mui.Card,
+  CardText = mui.CardText,
+  CardMedia = mui.CardMedia,
   ListItem = mui.ListItem;
 var Router = require('react-router');
 
-var Product = React.createClass({
+var CardProduct = React.createClass({
   mixins: [
       Router.Navigation,
       Router.State
@@ -50,24 +53,16 @@ var Product = React.createClass({
         }
 
         return ( 
-
-      <div className="row text-center" style={{backgroundColor: Colors.white}} onClick={this.onProductselected}>
-                        <div className="col-xs-4">
-                            <img id="detail-icon-img" src={source} alt="note, paper icon" width="95" height="95"></img>
-                        </div>
-                        <div className="col-xs-6">
-                              <br/>
-                               <b>{product.product_name + (product.product_name_2|| "")}</b><br/>
-                               made by {product.manufacturer}
-                        </div>
-                         <div className="col-xs-2">
-                         <br/>
-                         <br/>
-                          {chevron}
-                         </div>       
-                    </div>
+                        <Card >
+                           <CardMedia>
+                             <img src={source}/>
+                           </CardMedia>
+                           <CardText>
+                                      <b>{product.product_name + (product.product_name_2|| "")}</b><br/>
+                            </CardText>
+                         </Card>
         );
     }
 });
 
-module.exports = Product;
+module.exports = CardProduct;

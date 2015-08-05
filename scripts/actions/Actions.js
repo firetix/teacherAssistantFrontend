@@ -4,10 +4,11 @@ var _ = require("underscore");
 var Auth = require('j-toker');
 var request = require('superagent');
 var Firebase = require('firebase');
-var ref = new Firebase('https://luminous-fire-7725.firebaseio.com/');
+var ref = new Firebase(SpoonfullConstants.FirebaseRoot);
 var trippsRef = ref.child('tripps');
 var entriesRef = ref.child('entries');
 var mediasRef = ref.child('medias');
+var reviewsRef = ref.child('reviews');
 var Router = require('react-router');
 var Navigation = Router.Navigation;
 
@@ -18,16 +19,32 @@ var Actions = Reflux.createActions({
     'login': {children: ["completed","failed"]},
     'logout': {children: ["completed","failed"]},
     'register': {children: ["completed","failed"]},
+    'getWishList': {children: ["completed","failed"]},
     'registerSuccess': {},
     'registerError': {},
     'validateToken':{},
+    'submitAddProduct':{},
     //products
     'getProducts': {},
     'getProduct': {},
     'updateProducts': {},
+    'updateProductReview': {},
     'updateProduct': {},
+    'productCreated':{},
+    'createProduct':{},
     'updateAccount': {children: ["completed","failed"]},
     'productSelected':{},
+    'showRecurrentQuestions':{},
+    'goBackDosage':{},
+    'showDosageOverview':{},
+    'addPhotoUI':{},
+    'addNoteUI':{},
+    'getProductExperiences':{},
+    'listenToProduct':{},
+    'listenToUserEntries':{},
+    'stopListeningToProduct':{},    
+    'listenToReviews':{},
+    'stopListeningToReviews':{},
 
     'createRecommendation': {},
     'recommendationCreated': {},
@@ -37,6 +54,8 @@ var Actions = Reflux.createActions({
     'updateRecommendation': {},
     'createReview': {},
     'getReviews': {},
+    'showDosageRecommendation':{},
+    'addDosageUI':{},
     // post actions
     'upvoteTripp': {},
     'downvoteTripp': {},
@@ -49,18 +68,22 @@ var Actions = Reflux.createActions({
     'downvoteMedia': {},
     'updateMediaCount': {},
     'addMedia': {},
+    'addReview': {},
     'deleteMedia': {},
     // firebase actions
     'listenToTripp': {},
     'listenToTripps': {},
+    'listenToEntrie': {},
     'listenToEntries': {},
     'stopListeningToTripps': {},
     'stopListeningToEntries': {},
     'stopListeningToTripp': {},
+    'stopListeningToEntrie': {},
       // ui actions
     'showModal': {},
     'hideModal': {},
     'goToTripp': {},
+    'showLeftNav':{},
       'transitionHome':{},
       'transitionTripps':{},
       'validated':{},
@@ -103,7 +126,7 @@ function _getErrors(res) {
   if (res.data) {
     var data = res.data;
     if (data['errors'] && data['errors']['full_messages']) {
-      errorMsgs = [data['errors']['full_messages']];
+      errorMsgs = data['errors'];
     } else if (data['error']) {
       errorMsgs = [data['error']];
     } else {
@@ -122,7 +145,7 @@ Actions.validateToken.listen(function(){
         Actions.validated(user);
       }.bind(this))
       .fail(function() {
-           // Actions.transitionHome();
+           Actions.transitionHome();
       });
 });
 Actions.login.listen(function(params) {
@@ -130,6 +153,10 @@ Actions.login.listen(function(params) {
     email: params.email,
     password: params.password
   }).then(function(resp) {
+    analytics.identify(resp.data.id, {
+      name: resp.data.full_name,
+      email: resp.data.email
+    });
     this.completed(resp.data);
   }.bind(this)).fail(function(resp) {
     var errorMsgs = _getErrors(resp);
@@ -138,29 +165,18 @@ Actions.login.listen(function(params) {
 
 });
 
-Actions.getProducts.listen(function(params) {
-    request.get(APIEndpoints.PRODUCTS)
-        .query({
-            per_page: params.per_page,
-            page: params.currentPage,
-            search_term: params.searchTerm
-        })
-        .end(function(error, res) {
-            if (res) {
-                json = JSON.parse(res.text);
-                console.log(json.products);
-                Actions.updateProducts(json.products);
-            }
-        });
-});
-Actions.getProduct.listen(function(productId) {
-  request.get(APIEndpoints.PRODUCTS + '/' + productId)
+Actions.createProduct.listen(function(params){
+  request.post(APIEndpoints.PRODUCTS)
+  .send({product:params})
     .end(function(error, res) {
       if (res) {
         json = JSON.parse(res.text);
-        Actions.updateProduct(json.product);
+        Actions.productCreated(json);
       }
     });
+});
+Actions.getProductExperiences.listen(function(params){
+
 });
 Actions.updateAccount.listen(function(params){
   Auth.updateAccount(params).then(function(resp) {
@@ -195,6 +211,7 @@ Actions.updateRecommendation.listen(function(params){
       }
     });
 });
+
 
 Actions.getRecommendation.listen(function(recommendationId){
   request.get(APIEndpoints.RECOMMENDATIONS + '/' + recommendationId)
@@ -249,12 +266,28 @@ Actions.register.listen(function(params) {
       password_confirmation: params.passwordConfirmation
   })
       .then(function(resp) {
+        analytics.identify(resp.data.id, {
+          name: resp.data.full_name,
+          email: resp.data.email
+        });
         this.completed(resp.data);
       }.bind(this))
       .fail(function(resp) {
           var errorMsgs = _getErrors(resp);
           this.failed(errorMsgs);
       }.bind(this));
+});
+Actions.getWishList.listen(function(products) {
+    request.get(APIEndpoints.WishList)
+    .query({
+      products:products
+          })
+    .end(function(error, res) {
+      if (res) {
+        json = JSON.parse(res.text);
+        Actions.getWishList.completed(json);
+      }
+    });
 });
 
 
@@ -376,7 +409,15 @@ Actions.downvoteMedia.preEmit = function(userId, mediaId) {
 Actions.addMedia.preEmit = function(media) {
     mediasRef.push(media, function(error) {
         if (error === null) {
-            Actions.updateMediaCount(media.trippId, 1);
+            // Actions.updateMediaCount(media.trippId, 1);
+        }
+    });
+};
+
+Actions.addReview.preEmit = function(experience) {
+    reviewsRef.push(experience, function(error) {
+        if (error === null) {
+            // Actions.updateMediaCount(media.trippId, 1);
         }
     });
 };
@@ -391,7 +432,7 @@ Actions.updateTripp.preEmit = function(tripp) {
 Actions.deleteMedia.preEmit = function(mediaId, trippId) {
     mediasRef.child(mediaId).remove(function(error) {
         if (error === null) {
-            Actions.updateMediaCount(trippId, -1);
+            // Actions.updateMediaCount(trippId, -1);
         }
     });
 };///////////

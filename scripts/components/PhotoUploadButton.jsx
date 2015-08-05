@@ -2,13 +2,25 @@ var Reflux = require('reflux');
 // actions
 var Actions = require('../actions/Actions');
 var SpoonfullConstants = require('../constants/SpoonfullConstants.js');
+var Spinner = require('../components/common/spinner.jsx');
 // components
 var Link = require('react-router').Link;
-
-var AddPhoto = React.createClass({
+var   mui = require('material-ui'),
+  ThemeManager = new mui.Styles.ThemeManager(),
+  Tab = mui.Tab,
+  TextField = mui.TextField,
+  Tabs = mui.Tabs,
+  Snackbar = mui.Snackbar,
+  RaisedButton = mui.RaisedButton,
+  FontIcon = mui.FontIcon,
+  DatePicker = mui.DatePicker,
+  Paper = mui.Paper,
+  Avatar = mui.Avatar;
+var PhotoUploadButton = React.createClass({
     getInitialState: function () {
         return {
-            image_url:null  
+            image_url:null,
+            uploading_photo:false 
         };
     },
     mixins: [
@@ -37,6 +49,9 @@ var AddPhoto = React.createClass({
     },
         onChange: function(obj) {
         var file;
+        this.setState({
+             uploading_photo:true
+         });
 
         file = obj.target.files[0];
         $(React.findDOMNode(this.refs.photo_upload_progress)).show();
@@ -102,12 +117,6 @@ var AddPhoto = React.createClass({
           this.onUploadComplete(file);
         }
     },
-        componentDidMount: function () {
-        $(".filestyle").filestyle({input: false,buttonText: "Add photo"});
-    },
-    componentWillUpdate: function (nextProps, nextState) {
-          $(".filestyle").filestyle({input: false,buttonText: "Add photo"});
-    },
     onUploadComplete: function(file) {
         var _this =this;
         var reader = new FileReader();
@@ -115,7 +124,7 @@ var AddPhoto = React.createClass({
         reader.onloadend = function() {
             _this.setState({
                 image_url :reader.result,
-                uploading_photo:true
+                uploading_photo:false
             });
         }
 
@@ -125,34 +134,31 @@ var AddPhoto = React.createClass({
             preview.src = "";
         }
         this.setState({
-            did_start_trip: false,
-            uploading_photo: false,
-            adding_note: false,
-             image_url_full: SpoonfullConstants.APIEndpoints.CDNRoot + "/user_uploads/"+ this.props.user.id + "/"+file.name    
+            image_url_full: SpoonfullConstants.APIEndpoints.CDNRoot + "/user_uploads/"+ this.props.user.id + "/"+file.name    
         });
+        this.props.onUploadCompleted(this.full_image_url);
+        this.setState({
+             uploading_photo:false
+         });
     },
     render:function() {
-        var imageRender;
-        if(this.state.image_url){
-           $(".filestyle").filestyle('destroy');
-            imageRender = (      <div className="row text-center">
-                <div className="col-xs-4">
-                    <img id="detail-icon-img" src={this.state.image_url} alt="note, paper icon" width="70" height="70"></img>
-                </div>
-                <div className="col-xs-8">
-                     <textarea placeholder="Add caption" ref="captionTextEl" className="comment-input full-width"></textarea>
-                </div>
-                        
-            </div>)
+        var photoUploadButton;
+        if(this.state.uploading_photo){
+            photoUploadButton =(<Spinner/>);
         }else{
-            imageRender = (<input onChange={this.onChange} type="file" className="filestyle" data-input="false"></input>)
+            photoUploadButton =(   <div className="uploader_action_container" style={{width:'93px',height:'40px',overflow:'hidden',position:'relative'}}>
+               <RaisedButton  secondary={true}   style={{width:'100%',height:'100%'}}>
+                                 <FontIcon   className="fa fa-camera action_icon"/>
+                               </RaisedButton>
+                <input name="t1" type="file" accept="image/*" onChange={this.onChange} capture="camera"/>
+            </div>);
         }
         return (
-            <div>                  
-                  {imageRender}
-                  </div>
+            <div className="text-center">
+                    {photoUploadButton}
+            </div>
         );
     }
 });
 
-module.exports = AddPhoto;
+module.exports = PhotoUploadButton;

@@ -5,10 +5,10 @@ var SessionStore = require('../stores/SessionStore.react.jsx');
 var ErrorNotice = require('../components/common/ErrorNotice.react.jsx');
 var Actions = require('../actions/Actions');
 var Router = require('react-router');
-var injectTapEventPlugin = require("react-tap-event-plugin");
 var   mui = require('material-ui'),
   ThemeManager = new mui.Styles.ThemeManager(),
   RaisedButton= mui.RaisedButton,
+  Paper= mui.Paper,
   TextField = mui.TextField;
 
 var LoginPage = React.createClass({
@@ -23,7 +23,7 @@ var LoginPage = React.createClass({
   onSubmit:function(e){
     e.preventDefault();
 
-    React.findDOMNode(this.refs.submit).disabled = true;
+    React.findDOMNode(this.refs.login).disabled = true;
     this.setState({
         submitted: true
     });
@@ -41,7 +41,7 @@ var LoginPage = React.createClass({
      });
         break;
         case 'loginError':
-          React.findDOMNode(this.refs.submit).disabled = false;
+          React.findDOMNode(this.refs.login).disabled = false;
         this.setState({
             user: user,
             errors:errors
@@ -51,15 +51,17 @@ var LoginPage = React.createClass({
   },
   render: function() {
     var errors = this.state.errors.length?(<div className="alert alert-danger" role="alert">
-          <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span className="glyphicon glyphicon-exclamation-sign" style={{marginRight:'5px',marginLeft:'5px'}} aria-hidden="true"></span>
           <span className="sr-only">Error:</span>
         {this.state.errors}
       </div>):(<div></div>)
     return (
       <div>
-            <br/>
-      <br/>
+      <Paper zDepth={2} className="text-center" style={{overflow:'hidden'}}>
+      <div className="container">
+         <br/>
         {errors}
+        </div>
       <form role="form" onSubmit={this.onSubmit }>
         <div className="form-group">
          <TextField
@@ -73,10 +75,12 @@ var LoginPage = React.createClass({
            floatingLabelText="Password" type="password">
          </TextField>
         </div>
+          <br/>
         <div className="text-right">
-        <RaisedButton label="Submit" secondary={true} ref="submit" onClick={this.onSubmit}/>
+        <RaisedButton label="Login" style={{width:'100%'}} secondary={true} ref="login" type="submit"/>
         </div>
       </form>
+      </Paper>
     </div>
     );
   }

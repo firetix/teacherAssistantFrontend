@@ -6,8 +6,10 @@
     "url": "https://github.com/andreamazz/small-frontend.git"
   },
   "dependencies": {
+    "bootstrap-slider": "^4.13.0",
     "bower": "^1.4.1",
     "classnames": "^2.1.3",
+    "compass": "^0.1.1",
     "css-modal": "^1.4.0",
     "fancy-react-s3-uploader": "0.0.31",
     "fastclick": "^1.0.6",
@@ -23,7 +25,9 @@
     "object-assign": "^1.0.0",
     "pubsub": "^1.0.2",
     "react": "^0.13.3",
+    "react-infinite-scroll": "^0.1.5",
     "react-tap-event-plugin": "^0.1.7",
+    "react-typeahead": "^1.1.2",
     "reflux": "^0.2.8",
     "superagent": "^0.21.0",
     "timeago": "^0.2.0",

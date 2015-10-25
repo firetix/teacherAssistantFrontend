@@ -14,6 +14,7 @@ var Link = Router.Link;
 var SessionStore = require('./stores/SessionStore.react.jsx');
 var Actions = require('./actions/Actions');
 var UhOh = require('./views/404.jsx');
+var NotificationsPage = require('./views/notificationsPage.jsx');
 var Login = require('./views/Login.jsx');
 var AddConsumption = require('./components/AddConsumption.jsx');
 var Register = require('./components/Signup.jsx');
@@ -376,6 +377,7 @@ var routes = (
         <Route handler={ UhOh } name="404" path="/404"/>
         <Route name="studentsPage" path="/students" handler={ StudentsHome } ignoreScrollBehavior />    
         <Route name="homeworks" path="/homeworks" handler={ HomeworksPage } ignoreScrollBehavior />    
+        <Route name="notifications" path="/notifications" handler={ NotificationsPage } ignoreScrollBehavior />    
         <Route name="teachersPage" path="/teachers" handler={ TeachersHome } ignoreScrollBehavior />    
         <Route name="product" path="/product/:productId" handler={ProductPage }/>  
         <Route name="entrie" path="/entrie/:entrieId" handler={EntriePage }/>  

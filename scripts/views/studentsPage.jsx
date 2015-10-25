@@ -208,8 +208,11 @@ var Students = React.createClass({
             {students}
             </ul>
             <div className="col m7">
-            <div className="card" id="linechart_material" style={{width:"100%", height: "auto"}}></div>
-          <ul className="collection with-header">
+            <ul className="collection with-header card" style={{width:"100%"}}> 
+          <li className="collection-header team teal center white-text" style={{width:"100%"}}><h4>Grade Overtime</h4> <p className="right"> Score</p></li>
+          <li><div id="linechart_material" style={{width:"99%", height: "auto"}}></div></li><br/>
+          <a className="waves-effect waves-light btn modal-trigger" href="#modal1" style={{width:"100%"}}>Suggest</a></ul>
+          <ul classNameName="collection with-header">
           <li className="collection-header team teal center white-text"><h4>Homework</h4> <p className="right" style={{marginTop:  "-10px"}}> Due Date</p></li>
             {homeworks}
          </ul>   

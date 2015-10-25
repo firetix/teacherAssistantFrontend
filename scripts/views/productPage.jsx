@@ -3,7 +3,7 @@ var Actions = require('../actions/Actions');
 var ProductStore = require('../stores/ProductStore.jsx');
 var CardProductItem = require('../components/products/cardProductItem.jsx');
 var LoginRedirection = require('../components/mixins/LoginRedirection.jsx');
-var Spinner = require('../components/common/Spinner.jsx');
+var Spinner = require('../components/common/spinner.jsx');
 
 
 var Router = require('react-router');

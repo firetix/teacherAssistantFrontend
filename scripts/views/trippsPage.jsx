@@ -4,7 +4,7 @@ var Actions = require('../actions/Actions');
 
 var TrippsStore = require('../stores/trippsStore.jsx');
 
-var Spinner = require('../components/common/Spinner.jsx');
+var Spinner = require('../components/common/spinner.jsx');
 var TrippItem = require('../components/tripps/trippItem.jsx');
 var LoginRedirection = require('../components/mixins/LoginRedirection.jsx');
 var Router = require('react-router');

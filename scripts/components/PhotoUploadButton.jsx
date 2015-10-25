@@ -2,6 +2,7 @@ var Reflux = require('reflux');
 // actions
 var Actions = require('../actions/Actions');
 var SpoonfullConstants = require('../constants/SpoonfullConstants.js');
+
 var Spinner = require('common/spinner.jsx');
 // components
 var Link = require('react-router').Link;

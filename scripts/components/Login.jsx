@@ -74,20 +74,20 @@ var LoginPage = React.createClass({
         </div>
       <div className="form">
         <div className="row">
-          <form className="col s8"  onSubmit={this.onSubmit }>
+          <form className="col s8 offset-s2 card"  onSubmit={this.onSubmit }>
             <div className="row">
               <div className="input-field col s12">
-                <label for="first_name">First Name</label>
+                <label htmlFor="first_name">First Name</label>
                 <input placeholder="First name" id="first_name"   valueLink={this.linkState("email")} type="text" className="validate"></input>
                 </div>
             </div>
             <div className="row">
               <div className="input-field col s12">
                 <input placeholder="Password" id="password"   valueLink={this.linkState("password")} type="password" className="validate"></input>
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
               </div>
             </div>
-            <div className="input-field col s6">
+            <div className="input-field col s6 offset-s3">
               <select className="browser-default" valueLink={this.linkState('is_student')}>
                 <option value="" disabled selected>I am a...</option>
                 <option value="false">Student</option>
@@ -95,7 +95,7 @@ var LoginPage = React.createClass({
               </select>
             </div>
             <div className="text-right">
-            <RaisedButton label="Login" style={{width:'100%',marginTop:'20px', color:'#039be5'}} secondary={true} ref="login" type="submit"/>
+            <RaisedButton label="Login" style={{width:'105%',height:'64px',marginTop:'20px', marginLeft:'-2.5%', color:'#039be5'}} secondary={true} ref="login" type="submit"/>
             </div>
           </form>
         </div>

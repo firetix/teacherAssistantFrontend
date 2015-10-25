@@ -90,8 +90,8 @@ var LoginPage = React.createClass({
             <div className="input-field col s6">
               <select className="browser-default" valueLink={this.linkState('is_student')}>
                 <option value="" disabled selected>I am a...</option>
-                <option value="false">Teacher</option>
-                <option value="true">Student</option>
+                <option value="false">Student</option>
+                <option value="true">Teacher</option>
               </select>
             </div>
             <div className="text-right">

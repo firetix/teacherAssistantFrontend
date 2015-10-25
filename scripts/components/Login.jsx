@@ -95,7 +95,7 @@ var LoginPage = React.createClass({
               </select>
             </div>
             <div className="text-right">
-            <RaisedButton label="Login" style={{width:'100%',marginTop:'20px'}} secondary={true} ref="login" type="submit"/>
+            <RaisedButton label="Login" style={{width:'100%',marginTop:'20px', color:'#039be5'}} secondary={true} ref="login" type="submit"/>
             </div>
           </form>
         </div>

@@ -21,31 +21,39 @@
 
 body {
   background-size: 100%;
-  background-image: url("http://i.imgur.com/gCEjWy6.jpg");
+  background-image: url("https://images.unsplash.com/photo-1440688807730-73e4e2169fb8?q=80&fm=jpg&s=79978a74e55792a7a5182ba0c0aa4e25");
+  background-repeat: no-repeat;
+}
+
+.nav-wrapper {
+}
+
+.nav-wrapper .brand-logo {
+  padding-left: 150px;
+}
+
+.nav-wrapper .right {
+  padding-right: 120px;
 }
 
 .title {
-  color: #000;
-  padding-left: 170px;
-  padding-top: 50px;
-  width: 1000px;
+  color: #111;
+  text-align: center;
   font-weight: 700;
 }
 
 .title .button {
-  padding-right: 225px;
-  padding-top: 50px;
+  color: #69D2E7;
+  marigin: auto;
   text-align: center;
 }
 
 .form {
   color: #000;
-  padding-left: 170px;
-  padding-top: 30px;
-  width: 1000px;
+  text-align: center;
+  marigin: center;
 }
 
 .input-field {
-  marigin-right: 500px;
-  width: 500px;
+  marigin: auto;
 }

@@ -32,7 +32,7 @@ var LoginView = React.createClass({
             <div>
 
                             
-            		<div className="container sp_main_content">
+            		<div className="container sp_main_content ">
                   <Login/>
             	</div>	
             </div>

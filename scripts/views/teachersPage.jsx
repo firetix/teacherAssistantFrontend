@@ -75,10 +75,11 @@ var Products = React.createClass({
            return ( 
                 <div >
                   <div className="navbar-fixed">
-                    <nav className="orange darken-2" role="navigation">
+                    <nav className="orange" role="navigation">
                       <div className="nav-wrapper container">
                         <a id="logo-container" href="#" className="brand-logo">Teach-Assist.me</a>
                         <ul className="right hide-on-med-and-down">
+                          <li><a href="lessons.html">Sign Out</a></li>
                         </ul>
                       </div>
                     </nav>

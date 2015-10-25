@@ -9,10 +9,9 @@ return (
             <div className="nav-wrapper container">
                 <a id="logo-container" href="#" className="brand-logo">Teach-Assist.me</a>
                 <ul className="right hide-on-med-and-down">
-                    <li><a href="lessons.html">Lessons</a></li>
-                    <li><a href="students.html" className = "orange darken-3">Students</a></li>
-                    <li><a href="homework.html">Homework</a></li>
-                    <li><a href="notifications.html">Notifications</a></li>
+                    <li><a href="#students">Students</a></li>
+                    <li><a href="#exercices">Exercices</a></li>
+                    <li><a href="#notifications"  className = "orange darken-3">Notifications</a></li>
                 </ul>
                 <ul id="nav-mobile" className="side-nav">
                     <li><a href="#">Navbar Link</a></li>

@@ -1,12 +1,12 @@
 var Reflux = require('reflux');
 var React = require('react');
 var Actions = require('../actions/Actions');
-
-var ProductsStore = require('../stores/ProductsStore.react.jsx');
-
+var _ = require('underscore');
+var ExerciceStore = require('../stores/exercices.jsx');
+var StudentsStore = require('../stores/studentsStore.jsx');
 
 var Spinner = require('../components/common/spinner.jsx');
-var Product = require('../components/products/productItem.jsx');
+
 var LoginRedirection = require('../components/mixins/LoginRedirection.jsx');
 var Router = require('react-router');
 var Link = Router.Link;
@@ -19,60 +19,59 @@ var   mui = require('material-ui'),
   List = mui.List,
   Paper = mui.Paper,
   TextField = mui.TextField;
-
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+  }   
 
 var Products = React.createClass({
 
     mixins: [
         Router.Navigation,
         Router.State,
-        Reflux.listenTo(ProductsStore, 'onStoreUpdate'),
+        Reflux.listenTo(ExerciceStore, 'onExerciceUpdate'),
         LoginRedirection,
         React.addons.LinkedStateMixin
     ],
     getInitialState: function() {
-        var productsData = ProductsStore.getDefaultData();
-        return {
-            loading: false,
-            products: productsData.products,
-            sortOptions: productsData.sortOptions,
-            nextPage: productsData.nextPage,
-            currentPage: productsData.currentPage,
-            perPage: productsData.perPage
-        };
+   var studentsData = StudentsStore.getDefaultData();
+   return {
+       loading: true,
+       students: studentsData.students,
+       sortOptions: studentsData.sortOptions,
+       nextPage: studentsData.nextPage,
+       currentPage: studentsData.currentPage,
+       perPage: studentsData.perPage,
+       exercices: []
+   };
     },
-    onStoreUpdate: function(productsData) {
-        this.setState({
-            loading: false,
-            products: productsData.products,
-            sortOptions: productsData.sortOptions,
-            nextPage: productsData.nextPage,
-            currentPage: productsData.currentPage,
-            perPage:productsData.perPage
+    statics: {
+        willTransitionTo: function(transition, params) {
+                Actions.listenToExercices({
+            currentPage: ( 1),
+            perPage: this.perPage,
         });
+        },
+        willTransitionFrom: function() {
+            Actions.stopListeningToExercices();
+        }
     },
-    searchTerm:function(){
-        Actions.getProducts({   
-            currentPage: 1,
-            perPage: this.state.perPage,
-            searchTerm:this.refs.search.getValue().trim()
-        });
-    },
-    loadFunc:function(){
-      if(this.state.loading){
-        return;
-      }
-
+    onExerciceUpdate: function(homeworkData) {
       this.setState({
-        loading:true
-      });
-      Actions.getProducts({ 
-          currentPage: (this.state.currentPage +1 ),
-          perPage: this.state.perPage,
-          searchTerm:this.refs.search.getValue().trim()
+         exercices:homeworkData.exercie
       });
     },
     render: function() {
+      var exercices = this.state.exercices;
+      exercices = _.map(exercices,function(homework) {
+          var name = "filled-in-box" + homework.id;
+              // var href = "#homework/" + homework.id;
+            return (   <a className="collection-item avatar">
+                        <i className="material-icons circle green">assignment</i>
+                        <span className="quiz-title">{homework.title}</span>
+                        <p className="flow-text right" > {getRandomInt(1,30)}min </p>
+                      </a>)
+          
+        });
            return ( 
                 <div >
                   <div className="navbar-fixed">
@@ -80,36 +79,13 @@ var Products = React.createClass({
                       <div className="nav-wrapper container">
                         <a id="logo-container" href="#" className="brand-logo">Teach-Assist.me</a>
                         <ul className="right hide-on-med-and-down">
-                          <li><a href="lessons.html">Lessons</a></li>
-                          <li><a href="students.html" className = "orange darken-3">Students</a></li>
-                          <li><a href="homework.html">Homework</a></li>
-                          <li><a href="notifications.html">Notifications</a></li>
                         </ul>
                       </div>
                     </nav>
                   </div> 
                   <div className="row">
                     <ul className="collection col m3 offset-m1">
-                      <a className="collection-item avatar" href="worksheetStudent.html">
-                        <i className="material-icons circle green">assignment</i>
-                        <span className="quiz-title">Whom vs. Whom Notes</span>
-                        <p className="flow-text right" > 10 Min </p>
-                      </a>
-                      <a className="collection-item avatar" href="worksheetStudent.html">
-                        <i className="material-icons circle light-blue">description</i>
-                        <span className="quiz-title">Whom vs. Whom Worksheet</span>
-                        <p className="flow-text right" > 5 Min </p>
-                      </a>
-                      <a className="collection-item avatar" href="videoStudent.html">
-                        <i className="material-icons circle red">play_arrow</i>
-                        <span className="quiz-title">4 Roaming Deer - Khan Academy</span>
-                        <p className="flow-text right" > 2 Min </p>
-                      </a>
-                      <a className="collection-item avatar" href="quiz.html">
-                        <img src="quiz.jpg" alt="" className="circle"/>
-                        <span className="quiz-title">Whom vs Who quiz</span>
-                        <p className="flow-text right" > 10 Min </p>
-                      </a>
+                      {exercices}
                     </ul>
                     <div className="col m7">
                       <ul className="collection with-header">

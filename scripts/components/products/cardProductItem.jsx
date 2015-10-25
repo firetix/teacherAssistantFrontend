@@ -13,7 +13,6 @@ var   mui = require('material-ui'),
   CardMedia = mui.CardMedia,
   ListItem = mui.ListItem;
 var Router = require('react-router');
-
 var CardProduct = React.createClass({
   mixins: [
       Router.Navigation,
@@ -47,11 +46,9 @@ var CardProduct = React.createClass({
         if(!this.props.hideChevron){
           chevron=( <i className="fa fa-chevron-right"></i>)
         }
-
         if(this.props.showDelete){
           chevron=( <i className="fa fa-trash-o fa-2x"></i>)
         }
-
         return ( 
                         <Card >
                            <CardMedia>
@@ -64,5 +61,4 @@ var CardProduct = React.createClass({
         );
     }
 });
-
-module.exports = CardProduct;
+module.exports = CardProduct

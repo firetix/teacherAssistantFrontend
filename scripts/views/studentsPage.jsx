@@ -197,14 +197,18 @@ var Students = React.createClass({
       <a href="#" data-activates="nav-mobile" className="button-collapse"><i className="material-icons">menu</i></a>
     </div>
   </nav>
+  <div style={{height:"64px"}}></div>
   </div>
             < div className = "row" >
             <ul className="collection col m3 offset-m1" style={{backgroundColor:'white'}}>
-              <li className="collection-header team teal center white-text" style={{width:"110%", marginLeft:"-5%"}}><h4>Student</h4> <p className="right" style={{marginTop:  "-10px"}}> Score</p></li>
+              <li className="collection-header team teal center white-text" style={{width:"110%", marginLeft:"-5%"}}>
+              <h4>Student</h4> 
+              <p className="right" style={{marginTop:  "-10px"}}> Score</p>
+              </li>
             {students}
             </ul>
             <div className="col m7">
-            <div class="card" id="linechart_material" style={{width:"100%", height: "auto"}}></div>
+            <div className="card" id="linechart_material" style={{width:"100%", height: "auto"}}></div>
           <ul className="collection with-header">
           <li className="collection-header team teal center white-text"><h4>Homework</h4> <p className="right" style={{marginTop:  "-10px"}}> Due Date</p></li>
             {homeworks}

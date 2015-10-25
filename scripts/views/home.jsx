@@ -2,6 +2,7 @@
 var Actions = require('../actions/Actions');
 var Link = require('react-router').Link;
 var Router = require('react-router');
+var Login = require('./Login.jsx');
 
 var   mui = require('material-ui'),
   ThemeManager = new mui.Styles.ThemeManager(),
@@ -18,7 +19,7 @@ var Home = React.createClass({
 	],
 	componentWillMount: function () {
 	    if(this.props.user.signedIn){
-	    	this.transitionTo('entries',{
+	    	this.transitionTo('produts',{
 	    		pageNum:1
 	    	});
 	    } 
@@ -36,32 +37,29 @@ var Home = React.createClass({
     render:function() {
     	var navBar;
     	var menu;
-    	if (this.props.user && this.props.user.signedIn) {
-    		this.transitionTo('entries',{
-    			pageNum:1
-    		});
-    	}else{
-    			menu=(    <mui.AppBar
-                  title='Spoonfull'
-                   onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTap} className="app_bar" />
-                  )
-    		}
         return (
 
             <div>
-            {menu}
-            		<div className="container sp_main_content">
-                <Paper zDepth={2} className="text-center">
-                <div className="container">
-                  <h5>Welcom to spoonfull</h5>
-                  <h6> this app works best if you add it to your homescreen</h6>
-                  <div className="row" style={{marginTop:10}}>
-                     <RaisedButton style={{width:'50%'}} label="Login" secondary={true} ref="Login" onClick={this.onLogin}/>
-                     <RaisedButton style={{width:'50%'}} label="Signup" secondary={true} ref="Signup" onClick={this.onSignup}/>
-                   </div>
-            	</div>	
-                </Paper>
-              </div>  
+                        <div className="navbar-fixed">
+    <nav>
+    <div className="nav-wrapper">
+      <a href="#" className="brand-logo">Chestnut</a>
+      <ul id="nav-mobile" className="right hide-on-med-and-down">
+        <li className="waves-effect waves-light"><a >Register</a></li>
+        <li className="waves-effect waves-light"><a >Sign In</a></li>
+      </ul>
+    </div>
+  </nav>
+  </div>
+                <div className="image-container">
+    <div className="title">
+      <h2><strong>Dynamic. Helpful. Chestnut.</strong></h2>
+      <h5>Introducing a new way for students to reach their full potential from teachers using the resources and awesomeness of Chestnut.</h5>
+    </div>
+      <Login/>
+    
+  </div>
+      
             </div>
         );
     }

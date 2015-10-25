@@ -30,9 +30,7 @@ var LoginView = React.createClass({
         return (
 
             <div>
-           <mui.AppBar
-                            title='Spoonfull'
-                             onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTap} className="app_bar" />
+
                             
             		<div className="container sp_main_content">
                   <Login/>

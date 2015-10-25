@@ -20,6 +20,7 @@ var Actions = Reflux.createActions({
     'logout': {children: ["completed","failed"]},
     'register': {children: ["completed","failed"]},
     'getWishList': {children: ["completed","failed"]},
+    'getBrandList': {children: ["completed","failed"]},
     'registerSuccess': {},
     'registerError': {},
     'validateToken':{},
@@ -151,7 +152,8 @@ Actions.validateToken.listen(function(){
 Actions.login.listen(function(params) {
   Auth.emailSignIn({
     email: params.email,
-    password: params.password
+    password: params.password,
+    is_student:params.is_student
   }).then(function(resp) {
     analytics.identify(resp.data.id, {
       name: resp.data.full_name,
@@ -289,6 +291,19 @@ Actions.getWishList.listen(function(products) {
       }
     });
 });
+Actions.getBrandList.listen(function(brands) {
+    request.get(APIEndpoints.BrandsSubList)
+    .query({
+      brands:brands
+          })
+    .end(function(error, res) {
+      if (res) {
+        json = JSON.parse(res.text);
+        Actions.getBrandList.completed(json);
+      }
+    });
+});
+
 
 
 /////////////////////////////

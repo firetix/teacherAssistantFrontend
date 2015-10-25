@@ -1,15 +1,15 @@
 var CDNRoot = "http://media.spoonfull.io.s3.amazonaws.com";
 //developement
-// var FirebaseRoot = "https://spoonfull.firebaseio.com/";
-// var APICore = "http://localhost:3000";
+var FirebaseRoot = "https://spoonfull.firebaseio.com/";
+var APICore = "http://localhost:3000";
  // var APICore = "http://33734d18.ngrok.com";
 
 
 
 
 //// PRODUCTION /////// 
-var APICore = "http://calm-shelf-9337.herokuapp.com";
-var FirebaseRoot = "https://luminous-fire-7725.firebaseio.com/";
+// var APICore = "http://calm-shelf-9337.herokuapp.com";
+// var FirebaseRoot = "https://luminous-fire-7725.firebaseio.com/";
 
 
 

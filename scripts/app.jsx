@@ -20,6 +20,8 @@ var Register = require('./components/Signup.jsx');
 var HomePage = require('./views/home.jsx');
 var Profile = require('./views/profile.jsx');
 var ProductsPage = require('./views/productsPage.jsx');
+var StudentsHome = require('./views/studentsPage.jsx');
+var TeachersHome = require('./views/teachersPage.jsx');
 var TrippsPage = require('./views/trippsPage.jsx');
 var EntriesPage = require('./views/entriesPage.jsx');
 var TrippPage = require('./views/trippPage.jsx');
@@ -278,7 +280,7 @@ var SpoonfullApp = React.createClass({
 		     <div>
 		    {menu}
 		         <div  id="main_content" className="text-center">
-                     <div style={{maxWidth:'1068px',margin:'0 auto'}}>
+                     <div >
     		             <RouteHandler { ...this.props } user={ this.state.user } />
                      </div>
 		         </div>
@@ -371,7 +373,8 @@ var SpoonfullApp = React.createClass({
 var routes = (
     <Route handler={ SpoonfullApp }>
         <Route handler={ UhOh } name="404" path="/404"/>
-        <Route name="products" path="/products/:pageNum" handler={ ProductsPage } ignoreScrollBehavior />    
+        <Route name="studentsPage" path="/students" handler={ StudentsHome } ignoreScrollBehavior />    
+        <Route name="teachersPage" path="/teachers" handler={ TeachersHome } ignoreScrollBehavior />    
         <Route name="product" path="/product/:productId" handler={ProductPage }/>  
         <Route name="entrie" path="/entrie/:entrieId" handler={EntriePage }/>  
         <Route name="login" path="/login" handler={Login }/>  

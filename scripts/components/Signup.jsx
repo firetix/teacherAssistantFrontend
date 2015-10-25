@@ -77,7 +77,7 @@ var LoginPage = React.createClass({
   userUpdate:function(triggerName,errors,user){
     switch (triggerName) {
       case 'registerSuccess':
-	     this.transitionTo('entries',{
+	     this.transitionTo('products',{
 	       pageNum:1
 	     });
         break;

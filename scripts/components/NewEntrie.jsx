@@ -320,7 +320,7 @@ var NewEntrie = React.createClass({
        });
     },
     onLeftIconButtonClick:function(){
-      this.transitionTo('entries',{
+      this.transitionTo('products',{
         pageNum:1
       });
     },    

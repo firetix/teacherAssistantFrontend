@@ -1,5 +1,5 @@
 
-var Reflux = require('Reflux');
+var Reflux = require('reflux');
 var React = require('react');
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var ErrorNotice = require('../components/common/ErrorNotice.react.jsx');

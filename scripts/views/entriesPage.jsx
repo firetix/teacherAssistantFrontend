@@ -4,7 +4,7 @@ var Actions = require('../actions/Actions');
 
 var EntriesStore = require('../stores/entriesStore.jsx');
 
-var Spinner = require('../components/common/spinner.jsx');
+var Spinner = require('../components/common/Spinner.jsx');
 var EntrieItem = require('../components/entries/entrieItem.jsx');
 var LoginRedirection = require('../components/mixins/LoginRedirection.jsx');
 var Router = require('react-router');

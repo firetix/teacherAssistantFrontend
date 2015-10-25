@@ -1,4 +1,4 @@
-var Reflux = require('Reflux');
+var Reflux = require('reflux');
 // actions
 var Actions = require('../actions/Actions');
 var Qty = require('js-quantities')

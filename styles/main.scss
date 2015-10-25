@@ -19,11 +19,14 @@
   font-size: inherit;
 }
 
-body {
+.login_wrapper {
   background-size: 100%;
   background-image: url("http://i.imgur.com/gCEjWy6.jpg");
 }
 
+body{
+  background-color: white;
+}
 .title {
   color: #000;
   padding-left: 170px;
@@ -48,4 +51,7 @@ body {
 .input-field {
   marigin-right: 500px;
   width: 500px;
+}
+.collection{
+  background-color: white !important;
 }

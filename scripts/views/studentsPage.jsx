@@ -98,9 +98,9 @@ var Students = React.createClass({
         }
     },
     componentDidMount:function() {
-          google.setOnLoadCallback(function(){
+         setTimeout(function() {
             drawChart(dataArrayInitial);
-          });
+          }, 2000);
     },
     onStoreUpdate: function(studentsData) {
         this.setState({
@@ -189,7 +189,7 @@ var Students = React.createClass({
       <ul className="right hide-on-med-and-down">
         <li><a href="#students" className = "orange darken-3">Students</a></li>
         <li><a href="#exercices">Exercices</a></li>
-        <li><a href="#notifications">Notifications</a></li>
+        <li><a href="#notifications">Support</a></li>
       </ul>
 
       <ul id="nav-mobile" className="side-nav">

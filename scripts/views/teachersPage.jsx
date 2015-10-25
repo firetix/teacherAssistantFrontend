@@ -2,7 +2,7 @@ var Reflux = require('reflux');
 var React = require('react');
 var Actions = require('../actions/Actions');
 var _ = require('underscore');
-var ExerciceStore = require('../stores/exercices.jsx');
+var HomeworkStore = require('../stores/homeworks.jsx');
 var StudentsStore = require('../stores/studentsStore.jsx');
 
 var Spinner = require('../components/common/spinner.jsx');
@@ -28,7 +28,7 @@ var Products = React.createClass({
     mixins: [
         Router.Navigation,
         Router.State,
-        Reflux.listenTo(ExerciceStore, 'onExerciceUpdate'),
+        Reflux.listenTo(HomeworkStore, 'onHomeWorkUpdate'),
         LoginRedirection,
         React.addons.LinkedStateMixin
     ],
@@ -41,12 +41,12 @@ var Products = React.createClass({
        nextPage: studentsData.nextPage,
        currentPage: studentsData.currentPage,
        perPage: studentsData.perPage,
-       exercices: []
+       homeworks: []
    };
     },
     statics: {
         willTransitionTo: function(transition, params) {
-                Actions.listenToExercices({
+                Actions.listenToHomeworks({
             currentPage: ( 1),
             perPage: this.perPage,
         });
@@ -55,15 +55,18 @@ var Products = React.createClass({
             Actions.stopListeningToExercices();
         }
     },
-    onExerciceUpdate: function(homeworkData) {
-      this.setState({
-         exercices:homeworkData.exercie
-      });
+    onHomeWorkUpdate: function(homeworkData) {
+       this.setState({
+            homeworks:homeworkData.homework
+         });
     },
     render: function() {
-      var exercices = this.state.exercices;
-      exercices = _.map(exercices,function(homework) {
+      var homeworks = this.state.homeworks;
+       var studentId= 2;
+      homeworks = _.map(homeworks,function(homework) {
+        
           var name = "filled-in-box" + homework.id;
+          if(homework.student_id == studentId){
               // var href = "#homework/" + homework.id;
             return (   <a className="collection-item avatar">
                         <i className="material-icons circle green">assignment</i>
@@ -71,7 +74,8 @@ var Products = React.createClass({
                         <p className="flow-text right" > {getRandomInt(1,30)}min </p>
                       </a>)
           
-        });
+        }
+      });
            return ( 
                 <div >
                   <div className="navbar-fixed">
@@ -85,7 +89,7 @@ var Products = React.createClass({
                   </div> 
                   <div className="row">
                     <ul className="collection col m3 offset-m1">
-                      {exercices}
+                      {homeworks}
                     </ul>
                     <div className="col m7">
                       <ul className="collection with-header">

@@ -24,6 +24,9 @@ var LoginView = React.createClass({
 		Actions.showLeftNav();
 		// this.refs.leftNav.toggle();
 	},
+  componentDidMount:function() {
+      $('body').addClass("login_wrapper");  
+  },
     render:function() {
     	var navBar;
     	var menu;

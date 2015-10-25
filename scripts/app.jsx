@@ -161,7 +161,7 @@ var SpoonfullApp = React.createClass({
         });
     },
         showModal: function(type,params) {
-            debugger;
+            
         // pressing esc closes modal
         window.addEventListener('keyup', keyUpHandler);
         this.setState({

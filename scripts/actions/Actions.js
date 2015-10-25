@@ -72,6 +72,7 @@ var Actions = Reflux.createActions({
     'downvoteMedia': {},
     'updateMediaCount': {},
     'addMedia': {},
+    'addHomework': {},
     'addReview': {},
     'deleteMedia': {},
     // firebase actions
@@ -433,6 +434,13 @@ Actions.downvoteMedia.preEmit = function(userId, mediaId) {
 
 Actions.addMedia.preEmit = function(media) {
     mediasRef.push(media, function(error) {
+        if (error === null) {
+            // Actions.updateMediaCount(media.trippId, 1);
+        }
+    });
+};
+Actions.addHomework.preEmit = function(homework) {
+    homeworksRef.push(homework, function(error) {
         if (error === null) {
             // Actions.updateMediaCount(media.trippId, 1);
         }

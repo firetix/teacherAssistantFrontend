@@ -36,9 +36,18 @@ var HomeworkStore = Reflux.createStore({
 
 
         _.each(exercieSnapshot,function(tripp,key){
-            var tripp = tripp;
-            tripp.id = key;
-            exercie.unshift(tripp);
+            if(tripp){
+            var obj = {
+                id: key,
+                answer:tripp.answer,
+                desc:tripp.desc,
+                estimated_time:tripp.estimated_time,
+                title:tripp.title,
+                exercicesId:tripp.exercicesId,
+            };
+            
+            exercie.unshift(obj);
+        }
         }.bind(this));
 
         // if extra product doesn't exist, indicate that there are no more exercie

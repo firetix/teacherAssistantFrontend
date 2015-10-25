@@ -95,28 +95,28 @@ var Products = React.createClass({
                     <div className="col m7">
                       <ul className="collection with-header">
                         <li className="collection-header team teal white-text center">
-                          <h4 >Which of these is a cat?</h4>
+                          <h4 >Because King Philip's desire to make Spain the dominant power in sixteenth-century Europe ran counter to Queen Elizabeth's insistence on autonomy for England, ------- was -------,</h4>
                         </li>
-                          <a href="#!" className="collection-item">a. Lorem ipsum dolor sit amet</a>
-                          <a href="#!" className="collection-item">b. Dolor odio placerat</a>
-                          <a href="#!" className="collection-item">c. Aenean aenean odio a vestibulum possimus</a>
-                          <a href="#!" className="collection-item">d. Velit erat pellentesque id nullam</a>
+                          <a href="#!" className="collection-item">(A) reconciliation . . assured</a>
+                          <a href="#!" className="collection-item">(B) warfare . . avoidable</a>
+                          <a href="#!" className="collection-item">(C) ruination . . impossible</a>
+                          <a href="#!" className="collection-item">(D) conflict . . inevitable</a>
                       </ul>
-                      <div className="row center">
-                        <div className="col m4">
-                          <img src="http://placehold.it/300x300"/>
-                        </div>
-                        <div className="col m4">
-                          <img src="http://placehold.it/300x300"/>
-                        </div>
-                        <div className="col m4">
-                          <img src="http://placehold.it/300x300"/>
-                        </div>
-                      </div>
                       <div className="btn-large waves-effect">Hint</div>
+                      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
                       <div className="btn-large waves-effect right">Skip</div>
                     </div>
                   </div>
+                    <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+          
                   </div> 
       );
     }

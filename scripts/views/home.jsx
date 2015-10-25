@@ -48,8 +48,8 @@ var Home = React.createClass({
   </div>
                 <div className="image-container">
     <div className="title">
-      <h2><strong>Dynamic. Helpful. Chestnut.</strong></h2>
-      <h5>Introducing a new way for students to reach their full potential from teachers using the resources and awesomeness of Chestnut.</h5>
+      <h1><strong>Our Mission:</strong></h1>
+      <h5>to provide the teachers with the tools to help their students reach their full potential.</h5>
     </div>
       <Login/>
     

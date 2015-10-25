@@ -215,7 +215,7 @@ var Students = React.createClass({
             
             <div className="card" id="linechart_material" style={{width:"100%", height: "auto"}}></div>
     
-            <table className="collection with-header" style={{backgroundColor:"white"}}>
+            <table className="collection with-header highlight card" style={{backgroundColor:"white"}}>
               <thead>
                 <tr>
                     <th data-field="id">Title</th>

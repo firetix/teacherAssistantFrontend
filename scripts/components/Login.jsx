@@ -77,8 +77,8 @@ var LoginPage = React.createClass({
           <form className="col s8 offset-s2 card"  onSubmit={this.onSubmit }>
             <div className="row">
               <div className="input-field col s12">
-                <label htmlFor="first_name">First Name</label>
-                <input placeholder="First name" id="first_name"   valueLink={this.linkState("email")} type="text" className="validate"></input>
+                <label htmlFor="first_name">Email</label>
+                <input placeholder="Email" id="first_name"   valueLink={this.linkState("email")} type="text" className="validate"></input>
                 </div>
             </div>
             <div className="row">

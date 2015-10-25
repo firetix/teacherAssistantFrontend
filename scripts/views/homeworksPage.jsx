@@ -94,23 +94,23 @@ var Students = React.createClass({
     },
     statics: {
         willTransitionTo: function(transition, params) {
-            Actions.listenToStudents({
-                currentPage: (+params.pageNum || 1),
-                perPage: this.perPage,
-            });
+            // Actions.listenToStudents({
+            //     currentPage: (+params.pageNum || 1),
+            //     perPage: this.perPage,
+            // });
             Actions.listenToHomeworks({
                 currentPage: (+params.pageNum || 1),
                 perPage: this.perPage,
             });
         },
         willTransitionFrom: function() {
-            Actions.stopListeningToStudents();
+            Actions.stopListeningToHomeworks();
         }
     },
     componentDidMount:function() {
-              google.setOnLoadCallback(function(){
-                drawChart(dataArrayInitial);
-              });
+              // google.setOnLoadCallback(function(){
+              //   drawChart(dataArrayInitial);
+              // });
 
     
     },
@@ -130,6 +130,7 @@ var Students = React.createClass({
          this.setState({
             homeworks:homeworkData.homework
          });
+
          
     },
 
@@ -174,10 +175,10 @@ var Students = React.createClass({
             }
           });
         homeworks = _.map(homeworks,function(homework) {
-            if(homework.student_id == selectedStudent){
+          
                 var href = "#homework/" + homework.id;
               return <a href={href} className="collection-item">{homework.title}<p className="right" style={{marginTop: " 0px"}}> {homework.due_date}</p></a>
-            }
+            
           });
         if(!homeworks){
                 homeworks = (<div> No Homework </div>)
@@ -187,8 +188,8 @@ var Students = React.createClass({
             <div className="navbar-fixed"><nav className="green" role="navigation">
     <div className="nav-wrapper container"><a id="logo-container" href="#" className="brand-logo">Teach-Assist.me</a>
       <ul className="right hide-on-med-and-down">
-        <li><a href="students.html" className="green darken-1">Students</a></li>
-        <li><a href="#homeworks">Homework</a></li>
+        <li><a href="#students" >Students</a></li>
+        <li><a className="green darken-1" href="#homeworks">Homework</a></li>
         <li><a href="#">Notifications</a></li>
       </ul>
 
@@ -200,17 +201,14 @@ var Students = React.createClass({
   </nav>
   </div>
           </div>
-            < div className = "row" >
-            <ul className="collection col m3 offset-m1" style={{backgroundColor:'white'}}>
-            {students}
-            </ul>
-            <div className="col m7">
+            < div className = "row" style={{maxWidth:'1072px'}} >
+            
             <div class="card" id="linechart_material" style={{width:"100%", height: "auto"}}></div>
           <ul className="collection with-header">
           <li className="collection-header team teal center white-text"><h4>Homework</h4> <p className="right" style={{marginTop:  "-10px"}}> Due Date</p></li>
             {homeworks}
          </ul>   
-      </div>
+      
 
                         < /div >
             

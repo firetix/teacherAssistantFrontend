@@ -21,6 +21,7 @@ var HomePage = require('./views/home.jsx');
 var Profile = require('./views/profile.jsx');
 var ProductsPage = require('./views/productsPage.jsx');
 var StudentsHome = require('./views/studentsPage.jsx');
+var HomeworksPage = require('./views/homeworksPage.jsx');
 var TeachersHome = require('./views/teachersPage.jsx');
 var TrippsPage = require('./views/trippsPage.jsx');
 var EntriesPage = require('./views/entriesPage.jsx');
@@ -279,7 +280,7 @@ var SpoonfullApp = React.createClass({
 		return (
 		     <div>
 		    {menu}
-		         <div  id="main_content" className="text-center">
+		         <div >
                      <div >
     		             <RouteHandler { ...this.props } user={ this.state.user } />
                      </div>
@@ -374,6 +375,7 @@ var routes = (
     <Route handler={ SpoonfullApp }>
         <Route handler={ UhOh } name="404" path="/404"/>
         <Route name="studentsPage" path="/students" handler={ StudentsHome } ignoreScrollBehavior />    
+        <Route name="homeworks" path="/homeworks" handler={ HomeworksPage } ignoreScrollBehavior />    
         <Route name="teachersPage" path="/teachers" handler={ TeachersHome } ignoreScrollBehavior />    
         <Route name="product" path="/product/:productId" handler={ProductPage }/>  
         <Route name="entrie" path="/entrie/:entrieId" handler={EntriePage }/>  
@@ -396,3 +398,8 @@ Router.run(routes, function (Handler, state) {
 // fastclick eliminates 300ms click delay on mobile
 // injectTapEventPlugin();
 attachFastClick(document.body);
+
+
+
+google.load('visualization', '1.1', {packages: ['line']});
+

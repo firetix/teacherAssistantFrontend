@@ -6,6 +6,7 @@ var request = require('superagent');
 var Firebase = require('firebase');
 var ref = new Firebase(SpoonfullConstants.FirebaseRoot);
 var trippsRef = ref.child('tripps');
+var homeworksRef = ref.child('homeworks');
 var entriesRef = ref.child('entries');
 var mediasRef = ref.child('medias');
 var reviewsRef = ref.child('reviews');
@@ -27,6 +28,7 @@ var Actions = Reflux.createActions({
     'submitAddProduct':{},
     //products
     'getProducts': {},
+    'getStudents': {},
     'getProduct': {},
     'updateProducts': {},
     'updateProductReview': {},
@@ -74,9 +76,13 @@ var Actions = Reflux.createActions({
     // firebase actions
     'listenToTripp': {},
     'listenToTripps': {},
+    'listenToStudents': {},
+    'listenToHomeworks': {},
     'listenToEntrie': {},
     'listenToEntries': {},
     'stopListeningToTripps': {},
+    'stopListeningToStudents': {},
+    'stopListeningToHomeworks': {},
     'stopListeningToEntries': {},
     'stopListeningToTripp': {},
     'stopListeningToEntrie': {},
@@ -87,6 +93,7 @@ var Actions = Reflux.createActions({
     'showLeftNav':{},
       'transitionHome':{},
       'transitionTripps':{},
+      'transitionStudents':{},
       'validated':{},
       'addTrippProduct':{},
 
@@ -114,7 +121,7 @@ Auth.configure({
     return window.location.href;
   },
     parseExpiry: function(headers){
-      debugger;
+      
     // convert from ruby time (seconds) to js time (millis) 
     return (parseInt(headers['expiry'], 10) * 1000) || null;
   }
@@ -256,7 +263,7 @@ Actions.logout.listen(function() {
   }.bind(this)).fail(function(resp) {
     var errorMsgs = _getErrors(resp);
     this.failed(errorMsgs);
-    Actions.transitionTripps();
+    Actions.transitionStudents();
   }.bind(this));
 });
 

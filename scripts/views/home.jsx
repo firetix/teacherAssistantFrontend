@@ -45,7 +45,6 @@ var Home = React.createClass({
     <div className="nav-wrapper">
       <a href="#" className="brand-logo">Chestnut</a>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
-        <li className="waves-effect waves-light"><a >Register</a></li>
         <li className="waves-effect waves-light"><a >Sign In</a></li>
       </ul>
     </div>

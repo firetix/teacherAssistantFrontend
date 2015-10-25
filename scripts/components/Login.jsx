@@ -35,7 +35,6 @@ var LoginPage = React.createClass({
     });
   },
   userUpdate:function(triggerName,errors,user){
-    debugger;
     switch (triggerName) {
       case 'loginSuccess':
         if (this.state.is_student) {

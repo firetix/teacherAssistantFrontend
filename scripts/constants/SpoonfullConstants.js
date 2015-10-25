@@ -28,6 +28,7 @@ module.exports = {
         USER: APIRoot + "/users",
         STORIES: APIRoot + "/stories",
         PRODUCTS: APIRoot + "/products",
+        STUDENTS: APIRoot + "/students",
         RECOMMENDATIONS: APIRoot + "/recommendations",
         REVIEWS: APIRoot + "/reviews",
         WishList: APICore + "/wish_list",

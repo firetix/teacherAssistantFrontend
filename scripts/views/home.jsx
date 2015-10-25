@@ -40,13 +40,16 @@ var Home = React.createClass({
         return (
 
             <div>
-                        <div className="navbar-fixed">
-    <nav>
-    <div className="nav-wrapper">
-      <a href="#" className="brand-logo">Chestnut</a>
-      <ul id="nav-mobile" className="right hide-on-med-and-down">
-        <li className="waves-effect waves-light"><a >Sign In</a></li>
+                       <div className="navbar-fixed"><nav className="orange darken-2" role="navigation">
+    <div className="nav-wrapper container"><a id="logo-container" href="#" className="brand-logo">Teach-Assist.me</a>
+      <ul className="right hide-on-med-and-down">
+        <li><a href="/">Login</a></li>
       </ul>
+
+      <ul id="nav-mobile" className="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" className="button-collapse"><i className="material-icons">menu</i></a>
     </div>
   </nav>
   </div>

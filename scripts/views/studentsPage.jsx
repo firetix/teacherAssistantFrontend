@@ -183,25 +183,24 @@ var Students = React.createClass({
                 homeworks = (<div> No Homework </div>)
         }
         return ( < div  >
-                                <div className="navbar-fixed">
-            <div className="navbar-fixed"><nav className="green" role="navigation">
+                                                  <div className="navbar-fixed"><nav className="orange darken-2" role="navigation">
     <div className="nav-wrapper container"><a id="logo-container" href="#" className="brand-logo">Teach-Assist.me</a>
       <ul className="right hide-on-med-and-down">
-        <li><a href="students.html" className="green darken-1">Students</a></li>
+        <li><a href="#students" className = "orange darken-3">Students</a></li>
         <li><a href="#homeworks">Homework</a></li>
-        <li><a href="#">Notifications</a></li>
+        <li><a href="#notifications">Notifications</a></li>
       </ul>
 
-      <ul id="nav-mobile" className="side-nav" style={{left: "-250px"}}>
+      <ul id="nav-mobile" className="side-nav">
         <li><a href="#">Navbar Link</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" className="button-collapse"><i className="material-icons">menu</i></a>
     </div>
   </nav>
   </div>
-          </div>
             < div className = "row" >
             <ul className="collection col m3 offset-m1" style={{backgroundColor:'white'}}>
+              <li className="collection-header team teal center white-text" style={{width:"110%", marginLeft:"-5%"}}><h4>Student</h4> <p className="right" style={{marginTop:  "-10px"}}> Score</p></li>
             {students}
             </ul>
             <div className="col m7">

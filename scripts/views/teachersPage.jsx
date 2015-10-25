@@ -74,7 +74,7 @@ var Products = React.createClass({
     },
     render: function() {
            return ( 
-                <div className="container">
+                <div >
                   <div className="navbar-fixed">
                     <nav className="orange darken-2" role="navigation">
                       <div className="nav-wrapper container">
@@ -92,22 +92,22 @@ var Products = React.createClass({
                     <ul className="collection col m3 offset-m1">
                       <a className="collection-item avatar" href="worksheetStudent.html">
                         <i className="material-icons circle green">assignment</i>
-                        <span className="title">Whom vs. Whom Notes</span>
+                        <span className="quiz-title">Whom vs. Whom Notes</span>
                         <p className="flow-text right" > 10 Min </p>
                       </a>
                       <a className="collection-item avatar" href="worksheetStudent.html">
                         <i className="material-icons circle light-blue">description</i>
-                        <span className="title">Whom vs. Whom Worksheet</span>
+                        <span className="quiz-title">Whom vs. Whom Worksheet</span>
                         <p className="flow-text right" > 5 Min </p>
                       </a>
                       <a className="collection-item avatar" href="videoStudent.html">
                         <i className="material-icons circle red">play_arrow</i>
-                        <span className="title">4 Roaming Deer - Khan Academy</span>
+                        <span className="quiz-title">4 Roaming Deer - Khan Academy</span>
                         <p className="flow-text right" > 2 Min </p>
                       </a>
                       <a className="collection-item avatar" href="quiz.html">
                         <img src="quiz.jpg" alt="" className="circle"/>
-                        <span className="title">Whom vs Who quiz</span>
+                        <span className="quiz-title">Whom vs Who quiz</span>
                         <p className="flow-text right" > 10 Min </p>
                       </a>
                     </ul>
@@ -116,20 +116,20 @@ var Products = React.createClass({
                         <li className="collection-header team teal white-text center">
                           <h4 >Which of these is a cat?</h4>
                         </li>
-                        // <!--           <a href="#!" className="collection-item">a. Lorem ipsum dolor sit amet</a>
-                        //   <a href="#!" className="collection-item">b. Dolor odio placerat</a>
-                        //   <a href="#!" className="collection-item">c. Aenean aenean odio a vestibulum possimus</a>
-                        //   <a href="#!" className="collection-item">d. Velit erat pellentesque id nullam</a> -->
+                          <a href="#!" className="collection-item">a. Lorem ipsum dolor sit amet</a>
+                          <a href="#!" className="collection-item">b. Dolor odio placerat</a>
+                          <a href="#!" className="collection-item">c. Aenean aenean odio a vestibulum possimus</a>
+                          <a href="#!" className="collection-item">d. Velit erat pellentesque id nullam</a>
                       </ul>
                       <div className="row center">
                         <div className="col m4">
-                          <img src="http://placehold.it/300x300" >
+                          <img src="http://placehold.it/300x300"/>
                         </div>
                         <div className="col m4">
-                          <img src="http://placehold.it/300x300">
+                          <img src="http://placehold.it/300x300"/>
                         </div>
                         <div className="col m4">
-                          <img src="http://placehold.it/300x300">
+                          <img src="http://placehold.it/300x300"/>
                         </div>
                       </div>
                       <div className="btn-large waves-effect">Hint</div>

@@ -5,7 +5,7 @@ var SpoonfullConstants = require('../constants/SpoonfullConstants.js');
 var TrippStore = require('../stores/trippStore.jsx');
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var TrippComponent = require('../components/tripps/trippItem.jsx');
-var Spinner = require('common/spinner.jsx');
+var Spinner = require('common/Spinner.jsx');
 
 // components
 var Router = require('react-router');

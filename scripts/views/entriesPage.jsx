@@ -4,7 +4,6 @@ var React = require('react');
 var Actions = require('../actions/Actions');
 
 var EntriesStore = require('../stores/entriesStore.jsx');
-<<<<<<< HEAD
 
 var Spinner = require('../components/common/Spinner.jsx');
 

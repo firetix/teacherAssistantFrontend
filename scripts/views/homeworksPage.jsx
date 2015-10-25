@@ -167,6 +167,7 @@ var Students = React.createClass({
         var currentPage = this.state.currentPage || 1;
         var firstime =false;
         var user = this.props.user;
+        var exercicesJsx;
         students = _.map(students,function(student) {
             if(selectedStudent == student.id){
               return (<StudentItem  onClick={_this.onClick} student={ student } user={ user } key={ student.id } active={true}/>);
@@ -175,15 +176,23 @@ var Students = React.createClass({
 
             }
           });
-        exercices = _.map(exercices,function(homework) {
+        exercicesJsx = _.map(exercices,function(homework) {
           
                 var href = "#homework/" + homework.id;
-              return <a href={href} className="collection-item">{homework.title}<p className="right" style={{marginTop: " 0px"}}> {homework.due_date}</p></a>
+              return  (<tr>
+                  <td>{homework.title}</td>
+                  <td>{homework.estimated_time}</td>
+                  <td>{getRandomInt(1,10)}</td>
+                </tr>);
             
           });
-        if(!exercices){
-                exercices = (<div> No Exercices </div>)
+        
+        if(!exercicesJsx){
+                exercicesJsx = (<div> No Exercices </div>)
         }
+
+
+            
         return ( < div  >
                                 <div className="navbar-fixed">
             <div className="navbar-fixed"><nav className="orange darken-2" role="navigation">
@@ -191,7 +200,7 @@ var Students = React.createClass({
       <ul className="right hide-on-med-and-down">
         <li><a href="#students" >Students</a></li>
         <li><a className="orange darken-3" href="#exercices">Exercices</a></li>
-        <li><a href="#notifications">Notifications</a></li>
+        <li><a href="#notifications">Support</a></li>
       </ul>
 
       <ul id="nav-mobile" className="side-nav" style={{left: "-250px"}}>
@@ -205,10 +214,20 @@ var Students = React.createClass({
             < div className = "row" style={{maxWidth:'1072px'}} >
             
             <div className="card" id="linechart_material" style={{width:"100%", height: "auto"}}></div>
-          <ul className="collection with-header">
-          <li className="collection-header team teal center white-text"><h4>Exercices</h4> </li>
-            {exercices}
-         </ul>   
+    
+            <table className="collection with-header" style={{backgroundColor:"white"}}>
+              <thead>
+                <tr>
+                    <th data-field="id">Title</th>
+                    <th data-field="name">Time estimate</th>
+                    <th data-field="price">difficulty</th>
+                </tr>
+              </thead>
+              <tbody>
+                {exercicesJsx}
+                
+              </tbody>
+            </table>
       
 
                         < /div >

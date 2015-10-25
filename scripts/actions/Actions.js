@@ -166,6 +166,7 @@ Actions.login.listen(function(params) {
     password: params.password,
     is_student:params.is_student
   }).then(function(resp) {
+     $('body').removeClass("login_wrapper");  
     analytics.identify(resp.data.id, {
       name: resp.data.full_name,
       email: resp.data.email

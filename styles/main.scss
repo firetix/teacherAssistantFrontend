@@ -19,7 +19,7 @@
   font-size: inherit;
 }
 
-body {
+.login_wrapper {
   background-size: 100%;
   background-image: url("https://images.unsplash.com/photo-1440688807730-73e4e2169fb8?q=80&fm=jpg&s=79978a74e55792a7a5182ba0c0aa4e25");
   background-repeat: no-repeat;
@@ -36,6 +36,9 @@ body {
   padding-right: 120px;
 }
 
+body{
+  background-color: white;
+}
 .title {
   color: #111;
   text-align: center;
@@ -56,4 +59,7 @@ body {
 
 .input-field {
   marigin: auto;
+}
+.collection{
+  background-color: white !important;
 }

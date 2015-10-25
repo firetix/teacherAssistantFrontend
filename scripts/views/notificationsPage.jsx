@@ -11,7 +11,7 @@ return (
                 <ul className="right hide-on-med-and-down">
                     <li><a href="#students">Students</a></li>
                     <li><a href="#exercices">Exercices</a></li>
-                    <li><a href="#notifications"  className = "orange darken-3">Notifications</a></li>
+                    <li><a href="#notifications"  className = "orange darken-3">Support</a></li>
                 </ul>
                 <ul id="nav-mobile" className="side-nav">
                     <li><a href="#">Navbar Link</a></li>
@@ -24,37 +24,14 @@ return (
     <div className="row">
         <ul className="collection with-header col m3 offset-m1">
             <li className="collection-header team teal center white-text" style={{width:"110%", marginLeft:"-5%"}}>
-            <h4>Student</h4>
+            <h4>Questions</h4>
             <p className="right" style={{marginTop:  "-10px"}}> Score</p></li>
             <li className="collection-item avatar">
                 <img src="http://exmoorpet.com/wp-content/uploads/2012/08/cat.png" alt="" className="circle"/>
-                <span className="title">Eric Hoffman</span>
-                <h5 className="secondary-content"> 10 </h5>
-            </li>
-            <li className="collection-item avatar">
-                <img src="http://exmoorpet.com/wp-content/uploads/2012/08/cat.png" alt="" className="circle"/>
-                <span className="title">Craig Armstrong</span>
-                <h5 className="secondary-content"> 5 </h5>
-            </li>
-            <li className="collection-item avatar">
-                <img src="http://exmoorpet.com/wp-content/uploads/2012/08/cat.png" alt="" className="circle"/>
-                <span className="title">Sebastion Wallace</span>
-                <h5 className="secondary-content"> 7 </h5>
-            </li>
-            <li className="collection-item avatar">
-                <img src="http://exmoorpet.com/wp-content/uploads/2012/08/cat.png" alt="" className="circle"/>
-                <span className="title">Gemma McCartney</span>
-                <h5 className="secondary-content"> 8 </h5>
-            </li>
-            <li className="collection-item avatar">
-                <img src="http://exmoorpet.com/wp-content/uploads/2012/08/cat.png" alt="" className="circle"/>
-                <span className="title">Oliver Mitchell</span>
-                <h5 className="secondary-content"> 4 </h5>
-            </li>
-            <li className="collection-item avatar">
-                <img src="http://exmoorpet.com/wp-content/uploads/2012/08/cat.png" alt="" className="circle"/>
-                <span className="title">Olivia Foster</span>
-                <h5 className="secondary-content"> 2 </h5>
+                armaiz
+                <p>Who vs. Whom Video
+                </p>
+                <h5 className="secondary-content"> 6 </h5>
             </li>
         </ul>
         <div className="col m7">
@@ -66,23 +43,10 @@ return (
                         </li>
                         <li className="collection-item avatar">
                             <img src="img/1.jpg" alt="" className="circle"/>
-                            <span className="title">Eric Hoffman</span>
-                            <h5 className="secondary-content"> <input type="checkbox" className="filled-in" id="filled-in-box" />
+                            <span className="title">Mohamed Rachidi</span>
+                            <h5 className="secondary-content">
+                             <input type="checkbox" className="filled-in" id="filled-in-box" />
                                 <label htmlFor="filled-in-box"></label> 
-                            </h5>
-                        </li>
-                        <li className="collection-item avatar">
-                            <img src="img/5.jpg" alt="" className="circle"/>
-                            <span className="title">Oliver Mitchell</span>
-                            <h5 className="secondary-content"> <input type="checkbox" className="filled-in" id="filled-in-box2" />
-                                <label htmlFor="filled-in-box2"></label> 
-                            </h5>
-                        </li>
-                        <li className="collection-item avatar">
-                            <img src="img/6.jpg" alt="" className="circle"/>
-                            <span className="title">Olivia Foster</span>
-                            <h5 className="secondary-content"> <input type="checkbox" className="filled-in" id="filled-in-box3" />
-                                <label htmlFor="filled-in-box3"></label>
                             </h5>
                         </li>
                         <li>

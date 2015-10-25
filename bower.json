@@ -12,6 +12,10 @@
     "blueimp-file-upload": "~9.10.2",
     "bootstrap-filestyle": "~1.1.2",
     "loading-bar": "*",
-    "pace": "~1.0.2"
+    "pace": "~1.0.2",
+    "add-to-homescreen": "~3.2.2",
+    "bootstrap-combobox": "~1.1.6",
+    "typeahead.js": "~0.11.1",
+    "Materialize": "materialize#~0.97.1"
   }
 }

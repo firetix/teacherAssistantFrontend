@@ -1,7 +1,7 @@
 var Reflux = require('reflux');
 var Actions = require('../actions/Actions');
 var ProductStore = require('../stores/ProductStore.jsx');
-var ProductComponent = require('../components/products/productItem.jsx');
+var CardProductItem = require('../components/products/cardProductItem.jsx');
 var LoginRedirection = require('../components/mixins/LoginRedirection.jsx');
 var Spinner = require('../components/common/Spinner.jsx');
 
@@ -9,6 +9,13 @@ var Spinner = require('../components/common/Spinner.jsx');
 var Router = require('react-router');
 var Link = Router.Link;
 
+var   mui = require('material-ui'),
+  ThemeManager = new mui.Styles.ThemeManager(),
+  AppBar = mui.AppBar,
+  TextField = mui.TextField,
+  Snackbar = mui.Snackbar,
+  Paper = mui.Paper,
+  RaisedButton = mui.RaisedButton;
 
 var Product = React.createClass({
 
@@ -22,7 +29,6 @@ var Product = React.createClass({
 
     statics: {
         willTransitionTo: function(transition, params) {
-
             Actions.getProduct(params.productId);
         }
     },
@@ -30,7 +36,9 @@ var Product = React.createClass({
       var productsData = ProductStore.getDefaultData();
         return {
             product: productsData.product,
-            loading: true
+            loading: true,
+            autoHideDuration:2000,
+            show_snack_bar:false
         };
     },
 
@@ -40,117 +48,74 @@ var Product = React.createClass({
             loading: false
         });
     },
+    onRightIconButtonClick:function(){
 
-    onGetDosage: function() {
-        var product = this.state.product;
-        if(this.props.user.birthdate){
-          Actions.showModal('recurrentQuestions',product);                    
-        }else{
-          Actions.showModal('demographicQuestions',product);          
-        }
+      if(Router.History.length >1){
+            this.goBack();
+          }else{
+            this.transitionTo('entries',{
+              pageNum:1
+            });
+          }
+    },
+    onAddToWishList:function(){
+        var wish_list = this.props.user.wish_list || [];
+        wish_list.push(this.state.product.id);
+        Actions.updateAccount({
+            wish_list: wish_list
+        });
+        this.refs.snack_bar.show();
+    },
+    onFindNearby:function(){
+
     },
     render:function() {
         var user = this.props.user;
         var product = this.state.product;
         var productId = this.getParams();
         var content;
-
+        var test = "+ Add To Wish List";
+        if(!this.state.loading && user.wish_list && user.wish_list.indexOf(product.id) != -1){
+           test = "Saved";
+        }
         if (this.state.loading) {
             content = <Spinner />;
-        // } else if (product.isDeleted) {
-        //     this.replaceWith('404');
         } else {
-            // reviews = reviews.map(function(product) {
-            //     return <Review product={ product } user={ user } key={ product.id } />;
-            // });
-            content = (
-                <div>
-                  <div className="section">
-                      <div className="container-fluid">
-                                <div className="panel panel-info">
-                                  <div className="panel-heading">
-                                  <h5>{product.product_name +  (product.product_name_2|| "")}</h5>
-                                  </div>  
-                        <div className="row">
-    
-                              <div className="col-xs-9 col-md-9">
-
-                                 <div className="panel-body">
-                                    <label>productId:</label>
-                                    <p>{productId}</p>
-                                
-                                    <label>Manufacturer:</label>
-                                    <p>{product.manufacturer}</p>
-                                
-                                    <label>product_name:</label>
-                                    <p>{product.product_name + product.product_name_2}</p>
-                                
-                                    <label>flavor:</label>
-                                    <p>{product.flavor}</p>
-                                
-                                    <label>Category:</label>
-                                    <p>{product.category}</p>
-                                
-                                    <label>ingredients:</label>
-                                    <p>{product.ingredients}</p>
-                                
-                                    <label>thc:</label>
-                                    <p>{product.thc}</p>
-                                
-                                    <label>thc_dose:</label>
-                                    <p>{product.thc_dose}</p>
-                                
-                                    <label>type_strain:</label>
-                                    <p>{product.type_strain}</p>
-                                
-                                    <label>Quantity:</label>
-                                    <p>{product.quantity}</p>
-                                
-                                    <label>cbd_dose:</label>
-                                    <p>{product.cbd_dose}</p>
-                                
-                                    <label>dry_weed:</label>
-                                    <p>{product.dry_weed}</p>
-                                
-                                    <label>thc_3_party:</label>
-                                    <p>{product.thc_3_party}</p>
-                                
-                                    <label>dispenary_name:</label>
-                                    <p>{product.dispenary_name}</p>
-                                
-                                    <label>unit_of_mesure:</label>
-                                    <p>{product.unit_of_mesure}</p>
-                                
-                                    <label>nutritions_extra:</label>
-                                    <p>{product.nutritions_extra}</p>
-                                
-                                    <label>dairy:</label>
-                                    <p>{product.dairy}</p>
-                            
-                                    <label>nuts:</label>
-                                    <p>{product.nuts}</p>
-                                  </div>  
-                                
-                                  <div className="panel-footer text-center">
-                                  <button type="button" className="btn btn-hg btn-primary" onClick={this.onGetDosage}>Get Dosage</button> 
-                                  </div>
-                                </div>
-
-                                 
-                              <div className="col-xs-3 col-md-3">
-                                <img id="detail-icon-img" src="https://lh6.googleusercontent.com/lsLrGHwODjUBlvPqjt7Zvu4AJsBJxHNoJgiEmoU4y2NomVJYIsMr-UtlPHkJrEt8ECPDyQ=w1117-h1225" alt="note, paper icon" width="200" height="200"></img>
-                              </div>
-                              </div>
-                              
-                          </div>
-                      </div>
-                  </div>
+            content = (<div className="sp_main_content">
+                <CardProductItem product={ product } user={ user } key={ product.id }  hideChevron={true}/>
+                <div className="row container" style={{marginTop:10}}>
+                   <RaisedButton style={{width:'100%'}} label={test} secondary={true} ref="next" onClick={this.onAddToWishList}/>
+                 </div>
+                 <div className="row">
+                 <Paper zDepth={2} className="text-center">
+                    <TextField disabled={true}
+                      floatingLabelText="Name" hintText="Name" value={product.product_name + product.product_name_2}/>
+                    
+                    <TextField disabled={true}
+                      floatingLabelText="Brand" hintText="Brand" value={product.manufacturer}/> 
+                    <TextField disabled={true}
+                      floatingLabelText="flavor" hintText="flavor" value={product.flavor}/> 
+                    <TextField disabled={true}
+                      floatingLabelText="thc" hintText="thc" value={product.thc}/> 
+                    <TextField disabled={true}
+                      floatingLabelText="unit_of_mesure" hintText="unit_of_mesure" value={product.unit_of_mesure}/> 
+                </Paper>
+                  </div> 
+                  <Snackbar
+                    message="Product added to your wishList"
+                    autoHideDuration={this.state.autoHideDuration}
+                    ref="snack_bar"/>
                 </div>
             );
         }
 
         return (
-            <div className="content full-width">
+            <div>
+            <mui.AppBar
+                title='Spoonfull'
+                onLeftIconButtonTouchTap={this.onRightIconButtonClick}
+                 iconClassNameLeft="fa fa-chevron-left"   className="app_bar" />
+                              )
                 { content }
             </div>
         );

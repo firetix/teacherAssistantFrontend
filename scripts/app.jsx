@@ -14,14 +14,20 @@ var Link = Router.Link;
 var SessionStore = require('./stores/SessionStore.react.jsx');
 var Actions = require('./actions/Actions');
 var UhOh = require('./views/404.jsx');
-var Login = require('./components/Login.jsx');
+var Login = require('./views/Login.jsx');
+var AddConsumption = require('./components/AddConsumption.jsx');
 var Register = require('./components/Signup.jsx');
 var HomePage = require('./views/home.jsx');
+var Profile = require('./views/profile.jsx');
 var ProductsPage = require('./views/productsPage.jsx');
+var StudentsHome = require('./views/studentsPage.jsx');
+var HomeworksPage = require('./views/homeworksPage.jsx');
+var TeachersHome = require('./views/teachersPage.jsx');
 var TrippsPage = require('./views/trippsPage.jsx');
 var EntriesPage = require('./views/entriesPage.jsx');
 var TrippPage = require('./views/trippPage.jsx');
 var ProductPage = require('./views/productPage.jsx');
+var EntriePage = require('./views/entriePage.jsx');
 var AddTripp = require('./components/AddTripp.jsx');
 var AddNote = require('./components/AddNote.jsx');
 var AddPhoto = require('./components/AddPhoto.jsx');
@@ -36,6 +42,7 @@ var Auth = require('j-toker');
 var NewEntrie = require('./components/NewEntrie.jsx');
 var cx = require('classnames');
 var injectTapEventPlugin = require("react-tap-event-plugin");
+injectTapEventPlugin();
 var   mui = require('material-ui'),
   ThemeManager = new mui.Styles.ThemeManager(),
   AppBar = mui.AppBar,
@@ -82,6 +89,7 @@ var SpoonfullApp = React.createClass({
         require('react-router').Navigation,
         Reflux.listenTo(SessionStore, 'onStoreUpdate'),
         Reflux.listenTo(Actions.showModal, 'showModal'),
+        Reflux.listenTo(Actions.showLeftNav, 'showLeftNav'),
         Reflux.listenTo(Actions.hideModal, 'hideModal'),
         Reflux.listenTo(Actions.goToTripp, 'goToTripp'),
         Reflux.listenTo(Actions.transitionHome, 'transitionHome'),
@@ -105,6 +113,9 @@ var SpoonfullApp = React.createClass({
         };
         initState.user =SessionStore.getUser().user
         return initState;
+    },
+    showLeftNav:function(){
+            this.refs.leftNav.toggle();
     },
     goToTripp: function(trippId) {
         this.transitionTo('tripp', {
@@ -168,6 +179,16 @@ var SpoonfullApp = React.createClass({
     	this.transitionTo(data.route);
 		this.refs.leftNav.close();
     },
+    onLeftIconButtonTouchTapLoggedin:function(){
+        this.transitionTo('profile')
+    },
+    onDosageRecomendation:function(){
+        Actions.showDosageRecommendation();
+
+    },
+    addDosage:function(){
+        Actions.addDosageUI();
+    },
     render : function () {
         var user = this.state.user;
         var menu;
@@ -183,43 +204,59 @@ var SpoonfullApp = React.createClass({
 		];
         var modalTypes = {
             'login'   : <Login/>,
+            'addConsumption'   : <AddConsumption {...this.state}{ ...this.props } entrie={this.state.params}/>,
             'addProduct'   : <AddProduct {...this.state}{ ...this.props } tripp={this.state.params}/>,
             'selectProduct'   : <ProductsPage/>,
             'register': 
             <Register/>,
             'addTripp': <AddTripp {...this.state}{ ...this.props } tripp={this.state.params}/>,
-            'addNote':   (<AddNote {...this.state}{ ...this.props } tripp={this.state.params} />),
-            'addPhoto':   (<AddPhoto {...this.state}{ ...this.props } tripp={this.state.params} />),
+            'addNote':   (<AddNote {...this.state}{ ...this.props } entrie={this.state.params} />),
+            'addPhoto':   (<AddPhoto {...this.state}{ ...this.props } entrie={this.state.params} />),
             'addHowHigh':   (<AddHowHigh {...this.state}{ ...this.props } tripp={this.state.params} />),
             'demographicQuestions':  <DemographicQuestions {...this.state}{ ...this.props } tripp={this.state.params}/>,
             'recurrentQuestions':  <RecurrentQuestions {...this.state}{ ...this.props } tripp={this.state.params}/>
         };
-        if(this.state.modalType == 'addProduct'){
-        	 actions=  [
-			   { text: "Submit", ref: 'add_product',onTouchTap: this.addProduct  }
-			];
+        if (this.state.modalType == 'addProduct') {
+            actions = [{
+                text: "Submit",
+                ref: 'add_product',
+                onTouchTap: this.addProduct
+            }];
+        } else if (this.state.modalType == "addConsumption") {
+            actions = [ {
+                text: "Need Help with dosing?",
+                ref: 'needHelp',
+                onTouchTap: this.onDosageRecomendation
+            },{
+                text: "Submit",
+                ref: 'addDosage',
+                onTouchTap: this.addDosage
+            }];
+        } else if (this.state.modalType == "addNote") {
+            actions = [{
+                text: "Submit",
+                ref: 'addNoteUI',
+                onTouchTap: this.addNoteUI
+            }];
+        }else if (this.state.modalType == "addPhoto") {
+            actions = [{
+                text: "Submit",
+                ref: 'addPhotoUI',
+                onTouchTap: this.addPhotoUI
+            }];
         }
+
         var modalType = modalTypes[this.state.modalType];   
         if (this.state.user && this.state.user.signedIn) {
             rootUrl = "#tripps/1";
             menuItems = menuItemsLoggedIn;
 
-            menu = (
-                      <mui.AppBar
-         title='Spoonfull'
-         onRightIconButtonTouchTap={this.onRightIconButtonClick}
-          onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTapLoggedin}
-         iconClassNameRight="fa fa-pencil-square-o" iconClassNameLeft="fa fa-user"  className="app_bar"/>
-            )
         } else {
             menuItems = menuItemsLoggedOut;
             menu = (
-                <div>
+             
                 <LeftNav ref="leftNav" docked={false} menuItems={menuItemsLoggedOut} onChange={this.onLeftPanelChange} />
-                <mui.AppBar
-                  title='Spoonfull'
-                   onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTap} className="app_bar" />
-                  </div>
+        
             )
         }
         // return (
@@ -243,11 +280,13 @@ var SpoonfullApp = React.createClass({
 		return (
 		     <div>
 		    {menu}
-		         <div className="container" id="main_content">
-		             <RouteHandler { ...this.props } user={ this.state.user }/>
+		         <div >
+                     <div >
+    		             <RouteHandler { ...this.props } user={ this.state.user } />
+                     </div>
 		         </div>
-		         <Dialog openImmediately={this.state.showModal} contentStyle={{width:'100%',height:'3000px'}}   ref="dialog"
-		            autoDetectWindowHeight={false} autoScrollBodyContent={true} actions={actions}>
+		         <Dialog openImmediately={this.state.showModal} contentStyle={{minHeight:'300px'}}   ref="dialog"
+		             actions={actions}>
 		              { modalType } 
 		         </Dialog>
 		     </div>
@@ -256,21 +295,28 @@ var SpoonfullApp = React.createClass({
     _handleCustomDialogSubmit:function(){
         this.refs.dialog.show();
     },
-    componentWillMount: function () {
-		injectTapEventPlugin();
+  //   componentWillMount: function () {
+		// injectTapEventPlugin();
           
-    },
+  //   },
     showAddProduct:function(){
     	Actions.showModal('addProduct')
     },
 	addProduct:function(){
-
-	},
-    componentWillUpdate: function (nextProps, nextState) {
-         injectTapEventPlugin(); 
+        Actions.submitAddProduct();
     },
+    addPhotoUI:function(){
+        Actions.addPhotoUI();
+    },  
+    addNoteUI:function(){
+        Actions.addNoteUI();
+    },
+    // componentWillUpdate: function (nextProps, nextState) {
+    //     debugger;
+    //      injectTapEventPlugin(); 
+    // },
   onRightIconButtonClick: function(){
-    this.transitionTo('new_entrie')
+    this.transitionTo('new_entrie');
   },
   onLeftIconButtonTouchTap:function(){
   	this.refs.leftNav.toggle();
@@ -328,10 +374,14 @@ var SpoonfullApp = React.createClass({
 var routes = (
     <Route handler={ SpoonfullApp }>
         <Route handler={ UhOh } name="404" path="/404"/>
-        <Route name="products" path="/products/:pageNum" handler={ ProductsPage } ignoreScrollBehavior />    
+        <Route name="studentsPage" path="/students" handler={ StudentsHome } ignoreScrollBehavior />    
+        <Route name="homeworks" path="/homeworks" handler={ HomeworksPage } ignoreScrollBehavior />    
+        <Route name="teachersPage" path="/teachers" handler={ TeachersHome } ignoreScrollBehavior />    
         <Route name="product" path="/product/:productId" handler={ProductPage }/>  
+        <Route name="entrie" path="/entrie/:entrieId" handler={EntriePage }/>  
         <Route name="login" path="/login" handler={Login }/>  
         <Route name="signup" path="/signup" handler={Register }/>  
+        <Route name="profile" path="/profile" handler={Profile }/>  
         <Route name="new_entrie" path="/entrie" handler={NewEntrie }/>  
         <Route name="tripps" path="/tripps/:pageNum" handler={ TrippsPage } ignoreScrollBehavior/>
         <Route name="tripp" path="/tripp/:trippId" handler={ TrippPage } ignoreScrollBehavior/>
@@ -346,5 +396,10 @@ Router.run(routes, function (Handler, state) {
 });
 
 // fastclick eliminates 300ms click delay on mobile
-injectTapEventPlugin();
-// attachFastClick(document.body);
+// injectTapEventPlugin();
+attachFastClick(document.body);
+
+
+
+google.load('visualization', '1.1', {packages: ['line']});
+

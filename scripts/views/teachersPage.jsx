@@ -4,8 +4,9 @@ var Actions = require('../actions/Actions');
 
 var ProductsStore = require('../stores/ProductsStore.react.jsx');
 
-var Spinner = require('../components/common/Spinner.jsx');
 
+var InfiniteScroll = require('react-infinite-scroll')(React);
+var Spinner = require('../components/common/spinner.jsx');
 var Product = require('../components/products/productItem.jsx');
 var LoginRedirection = require('../components/mixins/LoginRedirection.jsx');
 var Router = require('react-router');
@@ -73,33 +74,20 @@ var Products = React.createClass({
       });
     },
     render: function() {
-        var products = this.state.products;
-        var currentPage = this.state.currentPage || 1;
-        var user = this.props.user;
-        var page;
-        var pageNum  =  1;
-        if(pageNum == 9 || (products.length ==0 && !this.state.loading)){
-            page = ( <p> No Products Found </p>)
-        }
-        products = products.map(function(product) {
-              return <Product product={ product } user={ user } key={ product.id } triggerSelection={true}/>;
-          });
-        var productsJsx = (<InfiniteScroll
-            pageStart={this.state.currentPage}
-            loadMore={this.loadFunc}
-            hasMore={this.state.nextPage}
-            threshold={5}
-            loader={<Spinner />}>
-          {products} 
-        </InfiniteScroll>);
-        return ( 
-          <Paper zDepth={2} className="text-center">
-            <TextField
-              floatingLabelText="Search" hintText="Product name or Brand or flavor" onChange={this.searchTerm} ref="search" type="search"/> 
-             { productsJsx }
-          </Paper>
-          
-        );
+           return ( 
+                   <div>
+                               <div className="navbar-fixed">
+           <nav>
+           <div className="nav-wrapper">
+             <a href="#" className="brand-logo">Chestnut</a>
+             <ul id="nav-mobile" className="right hide-on-med-and-down">
+               
+             </ul>
+           </div>
+         </nav>
+         </div>
+         <div> Teachers</div>
+         </div>        );
     }
 
 });

@@ -3,63 +3,62 @@ var Actions = require('../actions/Actions');
 var SpoonfullConstants = require('../constants/SpoonfullConstants.js');
 var Firebase = require('firebase');
 var ref = new Firebase(SpoonfullConstants.FirebaseRoot);
-var trippsRef = ref.child('tripps');
+var homeworkRef = ref.child('homeworks');
 var _ = require('underscore');
 
-var trippsPerPage = 10;
+var homeworkPerPage = 10;
 
-var TrippStore = Reflux.createStore({
+var HomeworkStore = Reflux.createStore({
 
     listenables: Actions,
 
     init: function() {
-        this.tripps = [];
+        this.homework = [];
         this.currentPage = 1;
         this.nextPage = true;
         this.perPage = 25;
     },
-    listenToTripps: function(params) {
+    listenToHomeworks: function(params) {
         this.currentPage = params.currentPage;
-        trippsRef
+        homeworkRef
         // .orderByChild(this.sortOptions.values[this.sortOptions.currentValue])
         // +1 extra post to determine whether another page exists
-        .limitToLast((this.currentPage * trippsPerPage) + 1)
-            .on('value', this.updateTripps.bind(this));
-    },	
-    updateTripps: function(trippsData) {
-		        // products is all products through current page + 1
-        var endAt = this.currentPage * trippsPerPage;
+        .limitToLast((this.currentPage * homeworkPerPage) + 1)
+            .on('value', this.updateHomeworks.bind(this));
+    },  
+    updateHomeworks: function(homeworkData) {
+                // products is all products through current page + 1
+        var endAt = this.currentPage * homeworkPerPage;
 
-        // accumulate tripps in tripps array
-        var tripps = [];
-       var trippsSnapshot = trippsData.val();
+        // accumulate homework in homework array
+        var homework = [];
+       var homeworkSnapshot = homeworkData.val();
 
 
-        _.each(trippsSnapshot,function(tripp,key){
+        _.each(homeworkSnapshot,function(tripp,key){
             var tripp = tripp;
             tripp.id = key;
-            tripps.unshift(tripp);
+            homework.unshift(tripp);
         }.bind(this));
 
-        // if extra product doesn't exist, indicate that there are no more tripps
-        this.nextPage = (tripps.length === endAt + 1);
+        // if extra product doesn't exist, indicate that there are no more homework
+        this.nextPage = (homework.length === endAt + 1);
 
         // slice off extra product
-        this.tripps = tripps.slice(0, endAt);
-        
+        this.homework = homework.slice(0, endAt);
         this.trigger({
-            tripps: this.tripps,
+            homework: this.homework,
             currentPage: this.currentPage,
             nextPage: this.nextPage,
             sortOptions: this.sortOptions
         });
     },
-    stopListeningToTripps: function() {
-        trippsRef.off();
+    stopListeningToHomeworks: function() {
+        homeworkRef.off();
     },
     getDefaultData: function() {
         return {
-            tripps: this.tripps,
+            homework: this.homework,
             currentPage: this.currentPage,
             nextPage: this.nextPage,
             sortOptions: this.sortOptions,
@@ -69,4 +68,4 @@ var TrippStore = Reflux.createStore({
 
 });
 
-module.exports = TrippStore;
+module.exports = HomeworkStore;

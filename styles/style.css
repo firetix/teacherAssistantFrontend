@@ -1,9 +1,3 @@
-@import 'fonts';
-// components
-@import 'spinner';
-
-
-
 /* Custom Stylesheet */
 /**
  * Use this file to override Materialize files so you can update
@@ -39,7 +33,7 @@ body {
 .title {
   color: #000;
   padding-left: 170px;
-  padding-top: 50px;
+  padding-top: 270px;
   width: 1000px;
   font-weight: 700;
 }

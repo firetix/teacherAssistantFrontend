@@ -3,63 +3,63 @@ var Actions = require('../actions/Actions');
 var SpoonfullConstants = require('../constants/SpoonfullConstants.js');
 var Firebase = require('firebase');
 var ref = new Firebase(SpoonfullConstants.FirebaseRoot);
-var trippsRef = ref.child('tripps');
+var studentsRef = ref.child('students');
 var _ = require('underscore');
 
-var trippsPerPage = 10;
+var studentsPerPage = 10;
 
-var TrippStore = Reflux.createStore({
+var StudentStore = Reflux.createStore({
 
     listenables: Actions,
 
     init: function() {
-        this.tripps = [];
+        this.students = [];
         this.currentPage = 1;
         this.nextPage = true;
         this.perPage = 25;
     },
-    listenToTripps: function(params) {
+    listenToStudents: function(params) {
         this.currentPage = params.currentPage;
-        trippsRef
+        studentsRef
         // .orderByChild(this.sortOptions.values[this.sortOptions.currentValue])
         // +1 extra post to determine whether another page exists
-        .limitToLast((this.currentPage * trippsPerPage) + 1)
-            .on('value', this.updateTripps.bind(this));
-    },	
-    updateTripps: function(trippsData) {
-		        // products is all products through current page + 1
-        var endAt = this.currentPage * trippsPerPage;
+        .limitToLast((this.currentPage * studentsPerPage) + 1)
+            .on('value', this.updateStudents.bind(this));
+    },  
+    updateStudents: function(studentsData) {
+                // products is all products through current page + 1
+        var endAt = this.currentPage * studentsPerPage;
 
-        // accumulate tripps in tripps array
-        var tripps = [];
-       var trippsSnapshot = trippsData.val();
+        // accumulate students in students array
+        var students = [];
+       var studentsSnapshot = studentsData.val();
 
 
-        _.each(trippsSnapshot,function(tripp,key){
+        _.each(studentsSnapshot,function(tripp,key){
             var tripp = tripp;
             tripp.id = key;
-            tripps.unshift(tripp);
+            students.unshift(tripp);
         }.bind(this));
 
-        // if extra product doesn't exist, indicate that there are no more tripps
-        this.nextPage = (tripps.length === endAt + 1);
+        // if extra product doesn't exist, indicate that there are no more students
+        this.nextPage = (students.length === endAt + 1);
 
         // slice off extra product
-        this.tripps = tripps.slice(0, endAt);
+        this.students = students.slice(0, endAt);
         
         this.trigger({
-            tripps: this.tripps,
+            students: this.students,
             currentPage: this.currentPage,
             nextPage: this.nextPage,
             sortOptions: this.sortOptions
         });
     },
-    stopListeningToTripps: function() {
-        trippsRef.off();
+    stopListeningToStudents: function() {
+        studentsRef.off();
     },
     getDefaultData: function() {
         return {
-            tripps: this.tripps,
+            students: this.students,
             currentPage: this.currentPage,
             nextPage: this.nextPage,
             sortOptions: this.sortOptions,
@@ -69,4 +69,4 @@ var TrippStore = Reflux.createStore({
 
 });
 
-module.exports = TrippStore;
+module.exports = StudentStore;

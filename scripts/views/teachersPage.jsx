@@ -5,7 +5,6 @@ var Actions = require('../actions/Actions');
 var ProductsStore = require('../stores/ProductsStore.react.jsx');
 
 
-var InfiniteScroll = require('react-infinite-scroll')(React);
 var Spinner = require('../components/common/spinner.jsx');
 var Product = require('../components/products/productItem.jsx');
 var LoginRedirection = require('../components/mixins/LoginRedirection.jsx');

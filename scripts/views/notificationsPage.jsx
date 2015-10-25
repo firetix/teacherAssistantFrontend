@@ -1,6 +1,27 @@
 // components
 var Link = require('react-router').Link;
+
+var SpoonfullConstants = require('../constants/SpoonfullConstants.js');
+var APIEndpoints = SpoonfullConstants.APIEndpoints;
+var request = require('superagent');
 var uhOh = React.createClass({
+    onConfirm:function(){
+        
+        request.get(APIEndpoints.APICore + '/notify')
+          .end(function(error, res) {
+            Materialize.toast('Text Messages sent!', 2000, 'rounded');
+          });
+    },
+    onSendText:function(){
+        request.get(APIEndpoints.APICore + '/notify')
+        .query({
+          message:$('#icon_prefix2').val()
+              })
+          .end(function(error, res) {
+            Materialize.toast('Text Messages sent!', 2000, 'rounded');
+            $('#icon_prefix2').val('');
+          });
+    },
 render:function() {
 return (
 <div className="content full-width">
@@ -50,7 +71,7 @@ return (
                             </h5>
                         </li>
                         <li>
-                            <div className="btn waves-effect" style={{width: "100%"}} onclick="  Materialize.toast('Confirmed!', 2000, 'rounded');">Confirm</div>
+                            <div className="btn waves-effect" style={{width: "100%"}} onClick={this.onConfirm}>Confirm</div>
                         </li>
                     </ul>
                     <div className="card row">
@@ -58,7 +79,7 @@ return (
                             <textarea id="icon_prefix2" className="materialize-textarea"></textarea>
                             <label htmlFor="icon_prefix2">Message</label>
                         </div>
-                        <div className="btn waves-effect" style={{width: "100%"}} onclick="  Materialize.toast('Text Messages sent!', 2000, 'rounded');">Send Text</div>
+                        <div className="btn waves-effect" style={{width: "100%"}} onClick={this.onSendText}>Send Text</div>
                     </div>
                     </form>
             </div>

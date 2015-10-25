@@ -9,7 +9,6 @@ var Router = require('react-router');
 // components
 var Link = require('react-router').Link;
 // var injectTapEventPlugin = require("react-tap-event-plugin");
-var Typeahead = require('react-typeahead').Typeahead;
 var   mui = require('material-ui'),
   ThemeManager = new mui.Styles.ThemeManager(),
   AppBar = mui.AppBar,

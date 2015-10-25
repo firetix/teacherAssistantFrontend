@@ -1,7 +1,50 @@
+
+
+
+// components
+var Reflux = require('reflux');
+// actions
+var Actions = require('../actions/Actions');
 // components
 var Link = require('react-router').Link;
+var ExerciceStore = require('../stores/exercices.jsx');
+
 
 var uhOh = React.createClass({
+  mixins: [
+      Reflux.listenTo(Actions.assignExercicesUI, 'assignExercicesUI'),
+      Reflux.listenTo(ExerciceStore, 'onExerciceUpdate')
+  ],
+  assignExercicesUI:function(){
+    
+     var student = this.props.student;
+     var yourArray =[];
+     $("input:checkbox:checked").each(function(){
+    
+         yourArray.push($(this).val());
+     });
+     var homework = {
+         student_id: student.id,
+         time: Date.now()
+     };
+     // Actions.addMedia(media);
+     // Actions.hideModal();
+  },
+  getInitialState: function() {
+    
+      return {
+          loading: true,  
+          exercices:[]
+      };
+  },
+  onExerciceUpdate:function(homeworkData){
+    debugger;
+       this.setState({
+          exercices:homeworkData.exercie
+       });
+
+       
+  },
     render:function() {
         return (
     <div id="modal1" >

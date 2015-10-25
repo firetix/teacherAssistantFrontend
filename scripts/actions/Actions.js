@@ -59,6 +59,7 @@ var Actions = Reflux.createActions({
     'getReviews': {},
     'showDosageRecommendation':{},
     'addDosageUI':{},
+    'assignExercicesUI':{},
     // post actions
     'upvoteTripp': {},
     'downvoteTripp': {},

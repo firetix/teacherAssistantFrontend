@@ -161,6 +161,7 @@ var SpoonfullApp = React.createClass({
         });
     },
         showModal: function(type,params) {
+            debugger;
         // pressing esc closes modal
         window.addEventListener('keyup', keyUpHandler);
         this.setState({
@@ -191,6 +192,9 @@ var SpoonfullApp = React.createClass({
     addDosage:function(){
         Actions.addDosageUI();
     },
+    assignExercices:function(){
+        Actions.assignExercicesUI();
+    },
     render : function () {
         var user = this.state.user;
         var menu;
@@ -206,7 +210,7 @@ var SpoonfullApp = React.createClass({
 		];
         var modalTypes = {
             'login'   : <Login/>,
-            'suggest'   : <Suggest/>,
+            'suggest'   : <Suggest student={this.state.params}/>,
             'addConsumption'   : <AddConsumption {...this.state}{ ...this.props } entrie={this.state.params}/>,
             'addProduct'   : <AddProduct {...this.state}{ ...this.props } tripp={this.state.params}/>,
             'selectProduct'   : <ProductsPage/>,
@@ -249,7 +253,8 @@ var SpoonfullApp = React.createClass({
             }];
         }else if (this.state.modalType == "suggest") {
             actions = [{
-                text: "Assign"
+                text: "Assign",
+                onTouchTap:this.assignExercices
             }];
         }
 

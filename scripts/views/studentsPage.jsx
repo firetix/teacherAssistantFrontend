@@ -146,7 +146,16 @@ var Students = React.createClass({
         drawChart(dataArrayInitial);
     },
     onSuggest:function(){
-        Actions.showModal('suggest');
+      var students = this.state.students;
+      var selectedStudentId = this.state.selectedStudent;
+        var selectedStudent;
+        _.each(students, function(student) {
+          if (selectedStudentId == student.id) {
+              selectedStudent=student
+          }
+      });
+      
+        Actions.showModal('suggest',selectedStudent);
     },
     render: function() {
         var _this =this;

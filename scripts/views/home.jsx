@@ -17,13 +17,6 @@ var Home = React.createClass({
 	    Router.Navigation,
       LoginRedirection
 	],
-	componentWillMount: function () {
-	    if(this.props.user.signedIn){
-	    	this.transitionTo('produts',{
-	    		pageNum:1
-	    	});
-	    } 
-	},
 	onLeftIconButtonTouchTap:function(){
 		Actions.showLeftNav();
 		// this.refs.leftNav.toggle();

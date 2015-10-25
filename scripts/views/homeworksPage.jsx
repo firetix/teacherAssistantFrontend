@@ -3,7 +3,7 @@ var _ = require('underscore');
 var Actions = require('../actions/Actions');
 
 var StudentsStore = require('../stores/studentsStore.jsx');
-var HomeworkStore = require('../stores/homeworks.jsx');
+var ExerciceStore = require('../stores/exercices.jsx');
 
 var Spinner = require('../components/common/spinner.jsx');
 var StudentItem = require('../components/students/studentItem.jsx');
@@ -77,7 +77,7 @@ var Students = React.createClass({
     mixins: [
         Router.Navigation,
         Reflux.listenTo(StudentsStore, 'onStoreUpdate'),
-        Reflux.listenTo(HomeworkStore, 'onHomeWorkUpdate'),
+        Reflux.listenTo(ExerciceStore, 'onExerciceUpdate'),
            LoginRedirection
     ],
     getInitialState: function() {
@@ -89,7 +89,7 @@ var Students = React.createClass({
             nextPage: studentsData.nextPage,
             currentPage: studentsData.currentPage,
             perPage: studentsData.perPage,
-            homeworks:[]
+            exercices:[]
         };
     },
     statics: {
@@ -98,16 +98,17 @@ var Students = React.createClass({
             //     currentPage: (+params.pageNum || 1),
             //     perPage: this.perPage,
             // });
-            Actions.listenToHomeworks({
+            Actions.listenToExercices({
                 currentPage: (+params.pageNum || 1),
                 perPage: this.perPage,
             });
         },
         willTransitionFrom: function() {
-            Actions.stopListeningToHomeworks();
+            Actions.stopListeningToExercices();
         }
     },
     componentDidMount:function() {
+      
               // google.setOnLoadCallback(function(){
               //   drawChart(dataArrayInitial);
               // });
@@ -126,9 +127,9 @@ var Students = React.createClass({
         });
 
     },
-    onHomeWorkUpdate:function(homeworkData){
+    onExerciceUpdate:function(homeworkData){
          this.setState({
-            homeworks:homeworkData.homework
+            exercices:homeworkData.exercie
          });
 
          
@@ -161,7 +162,7 @@ var Students = React.createClass({
     render: function() {
         var _this =this;
         var students = this.state.students;
-        var homeworks = this.state.homeworks;
+        var exercices = this.state.exercices;
         var selectedStudent = this.state.selectedStudent;
         var currentPage = this.state.currentPage || 1;
         var firstime =false;
@@ -174,22 +175,22 @@ var Students = React.createClass({
 
             }
           });
-        homeworks = _.map(homeworks,function(homework) {
+        exercices = _.map(exercices,function(homework) {
           
                 var href = "#homework/" + homework.id;
               return <a href={href} className="collection-item">{homework.title}<p className="right" style={{marginTop: " 0px"}}> {homework.due_date}</p></a>
             
           });
-        if(!homeworks){
-                homeworks = (<div> No Homework </div>)
+        if(!exercices){
+                exercices = (<div> No Exercices </div>)
         }
         return ( < div  >
                                 <div className="navbar-fixed">
-            <div className="navbar-fixed"><nav className="green" role="navigation">
+            <div className="navbar-fixed"><nav className="orange darken-2" role="navigation">
     <div className="nav-wrapper container"><a id="logo-container" href="#" className="brand-logo">Teach-Assist.me</a>
       <ul className="right hide-on-med-and-down">
         <li><a href="#students" >Students</a></li>
-        <li><a className="green darken-1" href="#homeworks">Homework</a></li>
+        <li><a className="orange darken-3" href="#exercices">Exercices</a></li>
         <li><a href="#">Notifications</a></li>
       </ul>
 
@@ -203,10 +204,10 @@ var Students = React.createClass({
           </div>
             < div className = "row" style={{maxWidth:'1072px'}} >
             
-            <div class="card" id="linechart_material" style={{width:"100%", height: "auto"}}></div>
+            <div className="card" id="linechart_material" style={{width:"100%", height: "auto"}}></div>
           <ul className="collection with-header">
-          <li className="collection-header team teal center white-text"><h4>Homework</h4> <p className="right" style={{marginTop:  "-10px"}}> Due Date</p></li>
-            {homeworks}
+          <li className="collection-header team teal center white-text"><h4>Exercices</h4> </li>
+            {exercices}
          </ul>   
       
 

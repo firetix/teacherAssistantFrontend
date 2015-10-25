@@ -46,25 +46,15 @@ function drawChart(dataArray) {
 
       var data = new google.visualization.DataTable();
       data.addColumn('number', 'Day');
-      data.addColumn('number', 'Guardians of the Galaxy');
-      data.addColumn('number', 'The Avengers');
+      data.addColumn('number', 'Student');
+      data.addColumn('number', 'Average');
       data.addRows(generateRandomArray());
 
-      var options = {
+
+            var options = {
          colors: ['#1b9e77', '#d95f02', '#7570b3'],
-        legend: { position: 'none' },
+        legend: { position: 'top' },
         chart: {
-        },
-        animation: {
-            startup: true,
-            duration: 1000
-        },
-        hAxis: {
-         // title: 'Total Population',
-          minValue: 0,
-        },
-        vAxis: {
-          //title: 'City'
         }
       };
 
@@ -108,11 +98,9 @@ var Students = React.createClass({
         }
     },
     componentDidMount:function() {
-              google.setOnLoadCallback(function(){
-                drawChart(dataArrayInitial);
-              });
-
-    
+          google.setOnLoadCallback(function(){
+            drawChart(dataArrayInitial);
+          });
     },
     onStoreUpdate: function(studentsData) {
         this.setState({
@@ -157,6 +145,9 @@ var Students = React.createClass({
       });
         drawChart(dataArrayInitial);
     },
+    onSuggest:function(){
+        Actions.showModal('suggest');
+    },
     render: function() {
         var _this =this;
         var students = this.state.students;
@@ -179,15 +170,16 @@ var Students = React.createClass({
               return <a href={href} className="collection-item">{homework.title}<p className="right" style={{marginTop: " 0px"}}> {homework.due_date}</p></a>
             }
           });
-        if(!homeworks){
-                homeworks = (<div> No Homework </div>)
+        
+        if(!homeworks.length){
+                homeworks = (<div className="collection-item text-center"> No Homework </div>)
         }
         return ( < div  >
                                                   <div className="navbar-fixed"><nav className="orange darken-2" role="navigation">
     <div className="nav-wrapper container"><a id="logo-container" href="#" className="brand-logo">Teach-Assist.me</a>
       <ul className="right hide-on-med-and-down">
         <li><a href="#students" className = "orange darken-3">Students</a></li>
-        <li><a href="#homeworks">Homework</a></li>
+        <li><a href="#exercices">Exercices</a></li>
         <li><a href="#notifications">Notifications</a></li>
       </ul>
 
@@ -200,7 +192,7 @@ var Students = React.createClass({
   <div style={{height:"64px"}}></div>
   </div>
             < div className = "row" >
-            <ul className="collection col m3 offset-m1" style={{backgroundColor:'white'}}>
+            <ul className="collection with-header col m3 offset-m1" style={{backgroundColor:'white'}}>
               <li className="collection-header team teal center white-text" style={{width:"110%", marginLeft:"-5%"}}>
               <h4>Student</h4> 
               <p className="right" style={{marginTop:  "-10px"}}> Score</p>
@@ -211,9 +203,11 @@ var Students = React.createClass({
             <ul className="collection with-header card" style={{width:"100%"}}> 
           <li className="collection-header team teal center white-text" style={{width:"100%"}}><h4>Grade Overtime</h4> <p className="right"> Score</p></li>
           <li><div id="linechart_material" style={{width:"99%", height: "auto"}}></div></li><br/>
-          <a className="waves-effect waves-light btn modal-trigger" href="#modal1" style={{width:"100%"}}>Suggest</a></ul>
-          <ul classNameName="collection with-header">
-          <li className="collection-header team teal center white-text"><h4>Homework</h4> <p className="right" style={{marginTop:  "-10px"}}> Due Date</p></li>
+          <a className="waves-effect waves-light btn modal-trigger"  style={{width:"100%"}} onClick={this.onSuggest}>Assign Homework</a></ul>
+          <ul className="collection with-header">
+          <li className="collection-header team teal center white-text">
+          <h4>Homework</h4> 
+          <p className="right" style={{marginTop:  "-10px"}}> Due Date</p></li>
             {homeworks}
          </ul>   
       </div>

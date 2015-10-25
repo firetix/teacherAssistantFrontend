@@ -16,6 +16,7 @@ var Actions = require('./actions/Actions');
 var UhOh = require('./views/404.jsx');
 var NotificationsPage = require('./views/notificationsPage.jsx');
 var Login = require('./views/Login.jsx');
+var Suggest = require('./views/Suggest.jsx');
 var AddConsumption = require('./components/AddConsumption.jsx');
 var Register = require('./components/Signup.jsx');
 var HomePage = require('./views/home.jsx');
@@ -205,6 +206,7 @@ var SpoonfullApp = React.createClass({
 		];
         var modalTypes = {
             'login'   : <Login/>,
+            'suggest'   : <Suggest/>,
             'addConsumption'   : <AddConsumption {...this.state}{ ...this.props } entrie={this.state.params}/>,
             'addProduct'   : <AddProduct {...this.state}{ ...this.props } tripp={this.state.params}/>,
             'selectProduct'   : <ProductsPage/>,
@@ -244,6 +246,10 @@ var SpoonfullApp = React.createClass({
                 text: "Submit",
                 ref: 'addPhotoUI',
                 onTouchTap: this.addPhotoUI
+            }];
+        }else if (this.state.modalType == "suggest") {
+            actions = [{
+                text: "Assign"
             }];
         }
 
@@ -376,7 +382,7 @@ var routes = (
     <Route handler={ SpoonfullApp }>
         <Route handler={ UhOh } name="404" path="/404"/>
         <Route name="studentsPage" path="/students" handler={ StudentsHome } ignoreScrollBehavior />    
-        <Route name="homeworks" path="/homeworks" handler={ HomeworksPage } ignoreScrollBehavior />    
+        <Route name="exercices" path="/exercices" handler={ HomeworksPage } ignoreScrollBehavior />    
         <Route name="notifications" path="/notifications" handler={ NotificationsPage } ignoreScrollBehavior />    
         <Route name="teachersPage" path="/teachers" handler={ TeachersHome } ignoreScrollBehavior />    
         <Route name="product" path="/product/:productId" handler={ProductPage }/>  
